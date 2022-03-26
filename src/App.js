@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
+// import { Link } from 'react-router-dom'
+import Input from './components/Input'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        
-      </header>
+      <h1>Hello world</h1>
+      <Input 
+        defaultState="meu state"
+      />
+      <Input 
+        defaultState="meu state 2"
+      />
+      <Input 
+        defaultState="meu state 3"
+      />
+
+        {/* <Button text="Pronto"/>
+        <Button text="Voltar"/> */}
+
+      {/* <Link to="/page2">Home</Link> */}
+
+      {/* <button 
+        onClick={() => console.log("clicado")}
+      >
+        Me clique!
+      </button> */}
     </div>
   );
 }
