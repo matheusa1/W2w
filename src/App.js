@@ -1,30 +1,23 @@
-// import { Link } from 'react-router-dom'
-import Input from './components/Input'
+import { NavLink, Route, Routes } from "react-router-dom";
+import Cadastro from './pages/Cadastro'
+import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
+import FilmeDetails from './pages/FilmesDetails'
 function App() {
   return (
-    <div className="App">
-      <h1>Hello world</h1>
-      <Input 
-        defaultState="meu state"
-      />
-      <Input 
-        defaultState="meu state 2"
-      />
-      <Input 
-        defaultState="meu state 3"
-      />
-
-        {/* <Button text="Pronto"/>
-        <Button text="Voltar"/> */}
-
-      {/* <Link to="/page2">Home</Link> */}
-
-      {/* <button 
-        onClick={() => console.log("clicado")}
-      >
-        Me clique!
-      </button> */}
-    </div>
+    <>
+          <NavLink to="/">home</NavLink>
+          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/register">cadastro</NavLink>
+          <NavLink to="/filme/01">filme 01</NavLink>
+          <NavLink to="/filme/02">filme 02</NavLink>
+    <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Cadastro />} />
+        <Route path="/filme/:id" element={<FilmeDetails />} />
+    </Routes>
+    </>
   );
 }
 
