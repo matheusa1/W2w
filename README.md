@@ -4,13 +4,13 @@ Site voltado para localização do filme desejado, dentre as várias plataformas
 
 ## Ao clonar:
 
-###`yarn`
+### `yarn`
 ou
-###`npm i`
+### `npm i`
 
 então rode o site com:
 
-###`yarn start`
+### `yarn start`
 ou
 ### `npm start`
 
