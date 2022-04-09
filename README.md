@@ -9,7 +9,7 @@ Site voltado para localização do filme desejado, dentre as várias plataformas
 O site irá rodar no [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 
-#Git basics
+# Git basics
 
 
 ## adiciona as mudanças
