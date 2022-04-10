@@ -3,7 +3,7 @@ import { Image } from 'antd';
 const PosterImg = props => {
   return (
     <Image
-      width={200}
+      width={400}
       src={props.posterLink}
     />
   );

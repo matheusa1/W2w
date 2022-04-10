@@ -1,7 +1,9 @@
-import { Rate } from "antd";
+import { Col, Rate, Row, Space } from "antd";
 import { useParams } from "react-router";
+import HeartFav from "../../components/HeartFav";
 import PosterImg from "../../components/MoviePic";
 import Rating from "../../components/Rating";
+import ReviewBox from "../../components/ReviewBox";
 
 const FilmeDetailsPage = props => {
   const params = useParams();
@@ -14,10 +16,18 @@ const FilmeDetailsPage = props => {
 
   return (
     <div>
-      <h2>{titulo}</h2>
-      <p>{desc}</p>
-      <PosterImg posterLink={posterLink} />
-      <Rating />
+        <Row>
+          <Col span={4} offset={1}>
+            <PosterImg posterLink={posterLink} />
+          </Col>
+          <Col span={4} offset={2}>
+            <h2>{titulo}</h2>
+            <p>{desc}</p>
+          </Col>
+          <Col span={4} offset={8}>
+            <ReviewBox />
+          </Col>
+        </Row>
     </div>
   )
 }
