@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
-export const Title = styled.h2`
+export const MainText = styled.h1`
     text-align: center;
-    font-size: 4rem;
+    font-size: 2.3rem;
     font-weight: 700;
 `

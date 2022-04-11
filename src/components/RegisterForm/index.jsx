@@ -87,7 +87,7 @@ const RegisterForm = () => {
           {
             validator: (_, value) =>
               value ? Promise.resolve() : Promise.reject(new Error('Deve aceitar os termos')),
-          },
+          }
         ]}
       >
         <Checkbox>
@@ -95,12 +95,12 @@ const RegisterForm = () => {
         </Checkbox>
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button style={{width: '100%'}} type="primary" htmlType="submit">
           Registrar
         </Button>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
 export default RegisterForm

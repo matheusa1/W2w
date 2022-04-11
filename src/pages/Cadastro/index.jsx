@@ -1,10 +1,10 @@
 import { Col, Row } from 'antd'
 import RegisterForm from '../../components/RegisterForm'
-import { Title }from './styles'
+import * as S from '../../components/Title'
 
 const CadastroPage = ()=>(
   <>
-    <Title>CADASTRE-SE</Title>
+    <S.Title>Cadastre-se</S.Title>
     <Row >
       <Col span={8} offset={8}>
         <RegisterForm />
