@@ -1,4 +1,4 @@
-import {Row, Col} from 'antd';
+import { Col } from 'antd';
 import { Title } from './styles';
 import  LoginForm  from '../../components/LoginForm';
 

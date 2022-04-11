@@ -91,7 +91,7 @@ const RegisterForm = () => {
         ]}
       >
         <Checkbox>
-          Eu li e concordo com os <a href="">termos</a>
+          Eu li e concordo com os <a href="/#">termos</a>
         </Checkbox>
       </Form.Item>
       <Form.Item>
