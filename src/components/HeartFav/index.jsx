@@ -28,13 +28,15 @@ const HeartFav = props =>{
             <Col span={8}></Col>
             <Col span={8}>
                 <Card style={{ width: 80, height: 80}}>
-                    <Row justify="center">
-                        <Popover content={text}>
-                            <HeartFilled 
-                            style={{fontSize:50, color:heartCol}}
-                            onClick={() => checkFav(heartCol)}
-                            />
-                        </Popover>              
+                    <Row gutter={[5][5]} align="middle">
+                        <Col pull={6}>
+                            <Popover content={text}>
+                                <HeartFilled 
+                                style={{fontSize:50, color:heartCol}}
+                                onClick={() => checkFav(heartCol)}
+                                />
+                            </Popover>  
+                        </Col>
                     </Row>
                 </Card>
             </Col>
@@ -42,5 +44,5 @@ const HeartFav = props =>{
         </Row>
     )
 }
-
+//AAAAAAAAAAAAAa
 export default HeartFav;

@@ -1,8 +1,6 @@
 import { Col, Rate, Row, Space } from "antd";
 import { useParams } from "react-router";
-import HeartFav from "../../components/HeartFav";
 import PosterImg from "../../components/MoviePic";
-import Rating from "../../components/Rating";
 import ReviewBox from "../../components/ReviewBox";
 
 const FilmeDetailsPage = props => {
@@ -17,16 +15,16 @@ const FilmeDetailsPage = props => {
   return (
     <div>
         <Row>
-          <Col span={4} offset={1}>
-            <PosterImg posterLink={posterLink} />
-          </Col>
-          <Col span={4} offset={2}>
-            <h2>{titulo}</h2>
-            <p>{desc}</p>
-          </Col>
-          <Col span={4} offset={8}>
-            <ReviewBox />
-          </Col>
+            <Col>
+              <PosterImg posterLink={posterLink} />
+            </Col>
+            <Col flex push={1} sm={{span: 8}} xs={{span: 16}}>
+              <h2>{titulo}</h2>
+              <p>{desc}</p>
+            </Col>
+            <Col lg={{span: 10, offset: 0}} md={{span: 10, offset: 4}} sm={{span: 10, offset: 8}} xs={{span: 24, offset: 1}}>
+              <ReviewBox />
+            </Col>
         </Row>
     </div>
   )
