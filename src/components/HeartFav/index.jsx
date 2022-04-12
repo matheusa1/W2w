@@ -1,6 +1,6 @@
 import { useState } from "react";   
 import {HeartFilled} from '@ant-design/icons'; 
-import { Col, Row, Popover, Card } from 'antd';
+import { Col, Row, Popover, Card, Space } from 'antd';
     
 const HeartFav = props =>{
     const [heartCol,setColor] = useState("#243827")
@@ -24,24 +24,17 @@ const HeartFav = props =>{
     );
     
     return (
-        <Row>
-            <Col span={8}></Col>
-            <Col span={8}>
-                <Card style={{ width: 80, height: 80}}>
-                    <Row gutter={[5][5]} align="middle">
-                        <Col pull={6}>
-                            <Popover content={text}>
-                                <HeartFilled 
-                                style={{fontSize:50, color:heartCol}}
-                                onClick={() => checkFav(heartCol)}
-                                />
-                            </Popover>  
-                        </Col>
-                    </Row>
-                </Card>
-            </Col>
-            <Col span={8}></Col>
-        </Row>
+        <Space align="center" direction="vertical" size="middle" style={{ display: 'flex' }}>
+            <Card size='small'>
+                <Popover content={text}>
+                    <HeartFilled 
+                        style={{fontSize:50, color:heartCol}}
+                        onClick={() => checkFav(heartCol)}
+                        />
+                </Popover> 
+            </Card>
+
+        </Space>
     )
 }
 //AAAAAAAAAAAAAa

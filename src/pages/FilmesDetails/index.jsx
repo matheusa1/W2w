@@ -1,9 +1,11 @@
-import { Col, Rate, Row, Space } from "antd";
+import { Typography, Space } from "antd";
 import { useParams } from "react-router";
 import PosterImg from "../../components/MoviePic";
 import ReviewBox from "../../components/ReviewBox";
 
 const FilmeDetailsPage = props => {
+  const { Text, Title } = Typography;
+  
   const params = useParams();
   console.log(params);
   const { id } = params;
@@ -14,20 +16,15 @@ const FilmeDetailsPage = props => {
 
   return (
     <div>
-        <Row>
-            <Col>
+            <Space align="start" direction="horizontal" size="small" style={{ display: 'flex' }}>
               <PosterImg posterLink={posterLink} />
-            </Col>
-            <Col flex push={1} sm={{span: 8}} xs={{span: 16}}>
-              <h2>{titulo}</h2>
-              <p>{desc}</p>
-            </Col>
-            <Col lg={{span: 10, offset: 0}} md={{span: 10, offset: 4}} sm={{span: 10, offset: 8}} xs={{span: 24, offset: 1}}>
+              <Space align="Start" direction="vertical" size="small" style={{ display: 'flex' }}>
+                <Title level={2}>{titulo}</Title>
+                <Text italic>{desc}</Text>
+              </Space>
               <ReviewBox />
-            </Col>
-        </Row>
+            </Space>
     </div>
   )
 }
-
 export default FilmeDetailsPage

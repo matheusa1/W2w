@@ -1,4 +1,4 @@
-import { Divider, Col, Row, Card, Space } from "antd"
+import { Col, Row, Card, Space } from "antd"
 import HeartFav from "../HeartFav"
 import Rating from "../Rating"
 import W2w from "../W2w"
@@ -9,7 +9,7 @@ const ReviewBox = props => {
     return (
     <Row 
     justify="end">
-        <Card style={{ width: 400, backgroundColor: '#474747' }}
+        <Card style={{width: 400, backgroundColor: '#c0bdd9'}}
         cover={
             <img
             alt="example"
@@ -17,19 +17,11 @@ const ReviewBox = props => {
             />
         }
         >
-            <Divider orientation="center">
-                    <Col span={4}>
-                        <Divider>
-                            <HeartFav />
-                            <Divider>
-                                <Rating />
-                            </Divider>
-                            <Divider>
-                                <W2w />
-                            </Divider>
-                        </Divider>
-                    </Col>
-                </Divider>
+            <Space align="center" direction="vertical" size="middle" style={{ display: 'flex' }} >
+                        <HeartFav />
+                        <Rating />   
+                        <W2w />
+                </Space>
         </Card>
         </Row>
     )
