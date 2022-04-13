@@ -14,7 +14,7 @@ const contentStyle = {
   background: '#364d79',
 };
 
-const filmes = [
+const filmesDestaques = [
   {nome: 'Batman', id: '01', img: 'https://cdn.ome.lt/d1WxTqmMEO3bA8lIHgGF_fPjZj0=/1200x630/smart/extras/conteudos/the_batman.jpg'},
   {nome: 'Esposa de mentirinha', id: '02', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA8qAIRKHSShHbedNoIXsIk5W1x467VGiyvluBMQSO8iR9G1tDb6OSRf4-T4hnvibVZBU&usqp=CAU'},
   {nome: 'Vingadores Ultimato', id: '03', img: 'https://kanto.legiaodosherois.com.br/w760-h398-gnw-cfill-q95/wp-content/uploads/2019/05/legiao_aOjGzon9_hclWBK5g41Y6qMHASxZtbXimL2NEeIQD8.png.jpeg'},
@@ -43,7 +43,7 @@ const DashboardPage = ()=> {
       </Col>
       <Col span={16} offset={4}>
         <Carousel autoplay dotPosition={'top'}>
-          {filmes.map(filme => {
+          {filmesDestaques.map(filme => {
             return(
               <NavLink to={`/filme/${filme.id}`}>
                 <div key={filme.id} >  
