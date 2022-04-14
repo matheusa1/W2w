@@ -1,7 +1,8 @@
-import { Divider, List, Card, Space, Avatar } from 'antd';
+import { Divider, List, Card, Space, Avatar, Typography } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 
 const W2w = props => {
+    const { Text, Title } = Typography;
     const data = [
     {
         title: 'Apple TV+',
@@ -18,6 +19,9 @@ const W2w = props => {
     ];
         return (
             <Space>
+                <Card align="center">
+                <Title ia level={3}>Where 2 Watch</Title>
+                <Divider />
                 <List
                 grid={{ gutter: 2, column: 1 }}
                 dataSource={data}
@@ -39,6 +43,7 @@ const W2w = props => {
                 </List.Item>
                 )}
                 />
+            </Card>
             </Space>
 
     )

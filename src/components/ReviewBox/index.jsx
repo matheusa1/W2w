@@ -1,5 +1,6 @@
 import { Col, Row, Card, Space } from "antd"
 import HeartFav from "../HeartFav"
+import OverRate from "../OverallRating"
 import Rating from "../Rating"
 import W2w from "../W2w"
 
@@ -18,8 +19,8 @@ const ReviewBox = props => {
         }
         >
             <Space align="center" direction="vertical" size="middle" style={{ display: 'flex' }} >
-                        <HeartFav />
-                        <Rating />   
+                        <Rating />
+                        <OverRate rate={props.rate} rateIMDB={props.rateIMDB}/>
                         <W2w />
                 </Space>
         </Card>
