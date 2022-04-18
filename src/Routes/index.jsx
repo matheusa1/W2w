@@ -3,6 +3,7 @@ import Cadastro from '../pages/Cadastro'
 import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import FilmeDetails from '../pages/FilmesDetails'
+import Perfil from '../pages/Perfil'
 
 const AppRoutes = ()=>(
   <Routes>
@@ -10,6 +11,7 @@ const AppRoutes = ()=>(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Cadastro />} />
       <Route path="/filme/:id" element={<FilmeDetails />} />
+      <Route path="/perfil" element={<Perfil />} />
   </Routes>
 )
 

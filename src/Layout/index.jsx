@@ -43,6 +43,9 @@ const Applayout = ({children}) => {
         <Menu.Item key="5" icon={<UserOutlined />}>
         <NavLink to="/filme/02">filme 02</NavLink>
         </Menu.Item>
+        <Menu.Item key="6" icon={<UserOutlined />}>
+        <NavLink to="/perfil">perfil</NavLink>
+        </Menu.Item>
       </Menu>
     </Sider>
     <Layout>
