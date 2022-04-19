@@ -1,4 +1,5 @@
-import { Typography, Space, Affix, Divider } from "antd";
+import { Typography, Space, Affix, Divider, Button } from "antd";
+import  Axios  from "axios";
 import { useParams } from "react-router";
 import ClassifcEt from "../../components/ClassEt";
 import MediaBox from "../../components/MediaBox";
@@ -9,8 +10,12 @@ const FilmeDetailsPage = props => {
   const { Text, Title } = Typography;
   
   const params = useParams();
-  console.log(params);
   const { id } = params;
+  const requestMedia = async () => {
+    const axios = Axios;
+    const response = await axios.get(`http://localhost:1337/api/medias/${id}`)
+    console.log(response.data);
+  }
 
   let titulo = "Magnólia";
   let desc = "Um dia em San Fernando Valley, na Califórnia, nos arredores da rua Magnólia, as vidas de nove personagens são interligadas através de um programa de televisão onde um grupo de três crianças desafia três adultos, cujas histórias se cruzam por coincidências do destino.";
@@ -26,6 +31,9 @@ const FilmeDetailsPage = props => {
             <Space align="start" direction="horizontal" size="small" style={{ display: 'flex' }}>
               <Affix offsetTop={20}>
                 <PosterImg posterLink={posterLink} />
+                <Button
+                onClick={() => requestMedia()}
+                >TESTE</Button>
                 <ClassifcEt />
               </Affix>
               <Space align="Start" direction="vertical" size="small" style={{ display: 'flex' }}>
