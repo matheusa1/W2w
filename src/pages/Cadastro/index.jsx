@@ -1,16 +1,16 @@
-import { Col, Row } from 'antd'
-import RegisterForm from '../../components/RegisterForm'
-import * as S from '../../components/Title'
+import { Col, Row } from "antd";
+import RegisterForm from "../../components/RegisterForm";
+import * as S from "../../components/Title";
 
-const CadastroPage = ()=>(
+const CadastroPage = () => (
   <>
     <S.Title>Cadastre-se</S.Title>
-    <Row >
+    <Row>
       <Col span={8} offset={8}>
         <RegisterForm />
       </Col>
     </Row>
   </>
-)
+);
 
-export default CadastroPage
+export default CadastroPage;
