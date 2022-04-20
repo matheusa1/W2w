@@ -1,5 +1,5 @@
 import { Layout, Menu } from 'antd';
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { UploadOutlined, UserOutlined, VideoCameraOutlined, SearchOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import * as S from './styles'
 import { useState } from 'react';
@@ -42,6 +42,9 @@ const Applayout = ({children}) => {
         </Menu.Item>
         <Menu.Item key="5" icon={<UserOutlined />}>
         <NavLink to="/filme/02">filme 02</NavLink>
+        </Menu.Item>
+        <Menu.Item key="6" icon={<SearchOutlined />}>
+        <NavLink to="/search">busca</NavLink>
         </Menu.Item>
       </Menu>
     </Sider>
