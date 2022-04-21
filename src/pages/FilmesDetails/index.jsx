@@ -38,7 +38,7 @@ const FilmeDetailsPage = props => {
               <Space align="Start" direction="vertical" size="small" style={{ display: 'flex' }}>
                 <Title level={1}>{titulo}</Title>
                 <Text italic style={{fontSize: 20}}>{desc}</Text>
-                <Divider /> 
+                <Divider style={{ borderWidth: 3 }}/> 
                 <Space align="start" style={{ display: 'flex' }}>
                   <MediaBox src={srcPics} trailerLink={trailerLink}/>
                 </Space>

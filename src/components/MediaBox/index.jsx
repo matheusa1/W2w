@@ -9,7 +9,7 @@ const MediaBox = props => {
             bordered={false}    
             >
             <Title level={2}>Imagens e trailer</Title>
-            <Divider/>
+            <Divider style={{ borderWidth: 3 }}/>
             <Space align="center" direction="vertical" size="small">
                 <MovieImages src={props.src}/> 
                 <Divider />
