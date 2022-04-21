@@ -1,32 +1,16 @@
-import { Col, Input, Row, Button } from 'antd'
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
+import { Col } from "antd";
+import * as S from "../../components/Title";
+import LoginForm from "../../components/LoginForm";
 
 const LoginPage = () => {
   return (
     <>
-      <h2 style={{textAlign: 'center'}} >LOGIN</h2>
-      <Row>
-        <Col span={6} offset={9}>
-          <Input size='large' placeholder="E-mail" />
-          <Input.Password
-            placeholder="Senha"
-            size='large'
-            iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-          />
-          <Row>
-            <Col span={6} offset={2}>
-              <Button size='large' style={{width: '100%'}} href="/">Entrar</Button>
-            </Col>
-            <Col span={6} offset={8}>
-              <Button size='large' style={{width: '100%'}} href="/">Voltar</Button>
-            </Col>
-          </Row>
-          <p>Não tem conta?</p>
-          <a href='/register'> Cadastre-se já</a>
-        </Col>
-      </Row>
+      <Col span={8} offset={8}>
+        <S.Title>Login</S.Title>
+        <LoginForm />
+      </Col>
     </>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
