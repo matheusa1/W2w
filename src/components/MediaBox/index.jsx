@@ -3,7 +3,7 @@ import MovieImages from '../MovieImages';
 import Trailer from '../Trailer';
 
 const MediaBox = props => {
-    const { Text, Title } = Typography;
+    const { Title } = Typography;
     return (
             <Card
             bordered={false}    
