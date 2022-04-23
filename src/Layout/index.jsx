@@ -3,8 +3,9 @@ import {
   SearchOutlined,
   HomeOutlined,
   AppstoreOutlined,
-  SettingOutlined,
   UserOutlined,
+  LoginOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import * as S from "./styles";
@@ -19,6 +20,8 @@ const Applayout = ({ children }) => {
     setShowMenu((s) => !s);
   };
 
+  let userLogged = false;
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
@@ -32,30 +35,43 @@ const Applayout = ({ children }) => {
         onCollapse={onCollapse}
       >
         <div className="logo" />
-        <Menu style={{paddingTop: "25px", textAlign: "center"}} theme="dark" mode="vertical" defaultSelectedKeys={["2"]}>
-          <Menu.Item key="1">
-            <Avatar
-              style={{
-                backgroundColor: "#5242cb",
-                marginRight: "10px",
-                marginLeft: "-10px",
-              }}
-              icon={<UserOutlined />}
-            />
-            <NavLink to="/profile">Perfil</NavLink>
-          </Menu.Item>
+        <Menu
+          style={{ paddingTop: "25px", textAlign: "center" }}
+          theme="dark"
+          mode="vertical"
+          defaultSelectedKeys={["3"]}
+        >
+          {userLogged ? (
+            <Menu.Item key={0}>
+              <Avatar
+                style={{
+                  backgroundColor: "#5242cb",
+                  marginRight: "10px",
+                  marginLeft: "-10px",
+                }}
+                icon={<UserOutlined />}
+              />
+              <NavLink to="/profile">Perfil</NavLink>
+            </Menu.Item>
+          ) : (
+            <>
+              <Menu.Item key={1} icon={<LoginOutlined />}>
+                <NavLink to="/login">Entre na sua conta</NavLink>
+              </Menu.Item>
+              <Menu.Item key={2} icon={<FormOutlined />}>
+                <NavLink to="/register">Ou cadastre-se</NavLink>
+              </Menu.Item>
+            </>
+          )}
           <S.Separator />
-          <Menu.Item key="2" icon={<HomeOutlined />}>
+          <Menu.Item key="3" icon={<HomeOutlined />}>
             <NavLink to="/">Home</NavLink>
-          </Menu.Item>
-          <Menu.Item key="3" icon={<AppstoreOutlined />}>
-            <NavLink to="/category">Categoria</NavLink>
           </Menu.Item>
           <Menu.Item key="4" icon={<SearchOutlined />}>
             <NavLink to="/search">Busca</NavLink>
           </Menu.Item>
-          <Menu.Item key="5" icon={<SettingOutlined />}>
-            <NavLink to="/settings">Configurações</NavLink>
+          <Menu.Item key="5" icon={<AppstoreOutlined />}>
+            <NavLink to="/category">Categoria</NavLink>
           </Menu.Item>
         </Menu>
       </Sider>
