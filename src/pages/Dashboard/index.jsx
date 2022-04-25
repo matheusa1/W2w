@@ -22,7 +22,7 @@ const filmesDestaques = [
   },
   {
     nome: "Esposa de mentirinha",
-    id: "02", 
+    id: "02",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA8qAIRKHSShHbedNoIXsIk5W1x467VGiyvluBMQSO8iR9G1tDb6OSRf4-T4hnvibVZBU&usqp=CAU",
   },
   {
@@ -52,9 +52,9 @@ const DashboardPage = () => {
       <Col span={8} offset={8}>
         <S.MainText>O que está procurando</S.MainText>
         <Search
-          placeholder="input search text"
+          placeholder="Filmes, Séries, animes ..."
           allowClear
-          enterButton="Search"
+          enterButton="Procurar"
           size="large"
           onSearch={onSearch}
         />
@@ -64,12 +64,12 @@ const DashboardPage = () => {
         <Carousel autoplay dotPosition={"top"}>
           {filmesDestaques.map((filme) => {
             return (
-              <NavLink to={`/filme/${filme.id}`}> 
+              <NavLink to={`/filme/${filme.id}`}>
                 <div key={filme.id}>
                   <img style={contentStyle} src={filme.img} alt={filme.nome} />
                   <p>{filme.nome}</p>
                 </div>
-              </NavLink> 
+              </NavLink>
             );
           })}
         </Carousel>
