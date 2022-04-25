@@ -6,6 +6,9 @@ import {
   UserOutlined,
   LoginOutlined,
   FormOutlined,
+  SettingOutlined,
+  EditOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import * as S from "./styles";
@@ -13,18 +16,14 @@ import { useState } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-let icon = true;
-
 const Applayout = ({ children }) => {
   const [showMenu, setShowMenu] = useState(true);
 
   const onCollapse = (collapsed) => {
     setShowMenu((s) => !s);
-    console.log("bboboab");
-    icon = !icon;
   };
 
-  let userLogged = true;
+  let isSingedIn = true;
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -32,7 +31,7 @@ const Applayout = ({ children }) => {
         collapsible
         collapsed={showMenu}
         breakpoint="lg"
-        collapsedWidth="60"
+        collapsedWidth="70"
         onBreakpoint={(broken) => {
           console.log(broken);
         }}
@@ -41,33 +40,29 @@ const Applayout = ({ children }) => {
         <NavLink to="/">
           <S.Logo>w2w?</S.Logo>
         </NavLink>
-        <Menu
-          style={{textAlign: "center" }}
-          theme="dark"
-          mode="vertical"
-          defaultSelectedKeys={["3"]}
-        >
-          {userLogged ? (
-            <Menu.Item key={0}>
-              <Avatar
-                style={{
-                  backgroundColor: "#5242cb",
-                  marginRight: "10px",
-                  marginLeft: "-10px",
-                }}
-                icon={<UserOutlined />}
-              />
-              {icon === true ? (
-                <NavLink to="/profile">Perfil</NavLink> 
-              ) : null}
-            </Menu.Item>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["3"]}>
+          {isSingedIn ? (
+            <Menu.SubMenu title="Perfil" icon={<UserOutlined />}>
+              <Menu.Item key={10} icon={<EditOutlined />}>
+                <NavLink to="/profile">Editar perfil</NavLink>
+              </Menu.Item>
+              <Menu.Item key={11} icon={<SettingOutlined />}>
+                <NavLink to="/settings">Configurações</NavLink>
+              </Menu.Item>
+              <Menu.Item key={12} icon={<LogoutOutlined />}>
+                <NavLink to="/logout">Sair</NavLink>
+              </Menu.Item>
+            </Menu.SubMenu>
           ) : (
             <>
               <Menu.Item key={1} icon={<LoginOutlined />}>
                 <NavLink to="/login">Entre na sua conta</NavLink>
               </Menu.Item>
-              <Menu.Item key={2} icon={<FormOutlined />}>
-                <NavLink to="/register">Ou cadastre-se</NavLink>
+              <Menu.Item
+                key={2}
+                icon={showMenu ? <FormOutlined /> : null}
+              >
+                <NavLink to="/register">ou cadastre-se</NavLink>
               </Menu.Item>
             </>
           )}
