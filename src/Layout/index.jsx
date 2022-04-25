@@ -13,14 +13,18 @@ import { useState } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
 
+let icon = true;
+
 const Applayout = ({ children }) => {
   const [showMenu, setShowMenu] = useState(true);
 
   const onCollapse = (collapsed) => {
     setShowMenu((s) => !s);
+    console.log("bboboab");
+    icon = !icon;
   };
 
-  let userLogged = false;
+  let userLogged = true;
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -28,15 +32,17 @@ const Applayout = ({ children }) => {
         collapsible
         collapsed={showMenu}
         breakpoint="lg"
-        collapsedWidth="50"
+        collapsedWidth="60"
         onBreakpoint={(broken) => {
           console.log(broken);
         }}
         onCollapse={onCollapse}
       >
-        <div className="logo" />
+        <NavLink to="/">
+          <S.Logo>w2w?</S.Logo>
+        </NavLink>
         <Menu
-          style={{ paddingTop: "25px", textAlign: "center" }}
+          style={{textAlign: "center" }}
           theme="dark"
           mode="vertical"
           defaultSelectedKeys={["3"]}
@@ -51,7 +57,9 @@ const Applayout = ({ children }) => {
                 }}
                 icon={<UserOutlined />}
               />
-              <NavLink to="/profile">Perfil</NavLink>
+              {icon === true ? (
+                <NavLink to="/profile">Perfil</NavLink> 
+              ) : null}
             </Menu.Item>
           ) : (
             <>

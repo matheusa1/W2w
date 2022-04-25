@@ -12,3 +12,17 @@ export const Separator = styled.div`
   background: #272176;
   margin: 0.5rem 0;
 `;
+
+export const Logo = styled.h2`
+  font-family: 'Margarine', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #FFF;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+
+  text-align: center;
+  padding-top: 1rem;
+`;
