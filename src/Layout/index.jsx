@@ -46,6 +46,9 @@ const Applayout = ({children}) => {
         <Menu.Item key="6" icon={<SearchOutlined />}>
         <NavLink to="/search">busca</NavLink>
         </Menu.Item>
+        <Menu.Item key="7">
+        <NavLink to="/category">Categoria</NavLink>
+        </Menu.Item>
       </Menu>
     </Sider>
     <Layout>
