@@ -16,9 +16,6 @@ const Applayout = ({children}) => {
   
 
   <Layout style={{minHeight:'100vh', backgroundColor:'#FFF'}}>
-    <div>
-      
-    </div>
     <Sider
       collapsible 
       collapsed={showMenu} 

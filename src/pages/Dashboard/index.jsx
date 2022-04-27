@@ -28,10 +28,10 @@ const DashboardPage = () => {
       <Row justify="center">
         <Col span={10}>
           <Search
-            placeholder="input search text"
+            placeholder="Filme, Série, Anime..."
             allowClear
-            enterButton="Search"
-            size="large"  
+            enterButton="Buscar"
+            size="large"
             onSearch={onSearch}
           />
         </Col>
@@ -41,13 +41,17 @@ const DashboardPage = () => {
         <Col span={12}>
           <Carousel autoplay dotPosition={"top"}>
             {filmesDestaques[2].Subcategorias.map((filme) => {
-              if(filme.destaque) {
+              if (filme.destaque) {
                 return (
-                  <NavLink to={`/filme/${filme.Id}`}> 
+                  <NavLink to={`/filme/${filme.Id}`}>
                     <div key={filme.Id}>
-                      <img style={contentStyle} src={filme.Imagem} alt={filme.Titulo} />
+                      <img
+                        style={contentStyle}
+                        src={filme.Imagem}
+                        alt={filme.Titulo}
+                      />
                     </div>
-                  </NavLink> 
+                  </NavLink>
                 );
               } else {
                 return null;
