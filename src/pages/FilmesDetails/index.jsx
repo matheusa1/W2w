@@ -1,4 +1,4 @@
-import { Typography, Space, Affix, Divider, Button } from "antd";
+import { Typography, Space, Affix, Divider} from "antd";
 import  Axios  from "axios";
 import { useParams } from "react-router";
 import React, { useEffect, useState } from "react";
@@ -6,7 +6,6 @@ import ClassifcEt from "../../components/ClassEt";
 import MediaBox from "../../components/MediaBox";
 import PosterImg from "../../components/MoviePic";
 import ReviewBox from "../../components/ReviewBox";
-
 
 
 const FilmeDetailsPage = props => {
@@ -37,25 +36,27 @@ const FilmeDetailsPage = props => {
   let releaseDate = medias?.attributes.releaseDate;
 
   return (
-    <Space align="start">
-            <Space align="start" direction="horizontal" size="small" style={{ display: 'flex' }}>
-              <Affix offsetTop={-100}>
-                <Space direction="vertical" size={"middle"}>
-                  <PosterImg posterLink={posterLink} />
-                  <ClassifcEt />
+    <>
+      <Space align="start">
+              <Space align="start" direction="horizontal" size="small" style={{ display: 'flex' }}>
+                <Affix offsetTop={-100}>
+                  <Space direction="vertical" size={"middle"}>
+                    <PosterImg posterLink={posterLink} />
+                    <ClassifcEt />
+                  </Space>
+                </Affix>
+                <Space align="Start" direction="vertical" size="small" style={{ display: 'flex' }}>
+                  <Title italic level={2}>{titulo} - {releaseDate}</Title>
+                  <Text italic style={{fontSize: 20}}>{desc}</Text>
+                  <Divider style={{ borderWidth: 3 }}/> 
+                  <Space align="start" style={{ display: 'flex' }}>
+                    <MediaBox src={srcPics} trailerLink={trailerLink}/>
+                  </Space>
                 </Space>
-              </Affix>
-              <Space align="Start" direction="vertical" size="small" style={{ display: 'flex' }}>
-                <Title italic level={2}>{titulo} - {releaseDate}</Title>
-                <Text italic style={{fontSize: 20}}>{desc}</Text>
-                <Divider style={{ borderWidth: 3 }}/> 
-                <Space align="start" style={{ display: 'flex' }}>
-                  <MediaBox src={srcPics} trailerLink={trailerLink}/>
-                </Space>
+                <ReviewBox rate={rate} rateIMDB={rateIMDB}/>
               </Space>
-              <ReviewBox rate={rate} rateIMDB={rateIMDB}/>
-            </Space>
-    </Space>
+      </Space>
+    </>
   )
 }
 export default FilmeDetailsPage
