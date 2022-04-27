@@ -8,7 +8,7 @@ const { Search } = Input;
 
 const contentStyle = {
   width: "100%",
-  height: "37.5rem",
+  height: "30rem",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
@@ -36,24 +36,26 @@ const DashboardPage = () => {
           />
         </Col>
       </Row>
-        <S.MainText>Destaques</S.MainText>
-      <Col span={16} offset={4}>
-        <Carousel autoplay dotPosition={"top"}>
-          {filmesDestaques[2].Subcategorias.map((filme) => {
-            if(filme.destaque) {
-              return (
-                <NavLink to={`/filme/${filme.Id}`}> 
-                  <div key={filme.Id}>
-                    <img style={contentStyle} src={filme.Imagem} alt={filme.Titulo} />
-                  </div>
-                </NavLink> 
-              );
-            } else {
-              return null;
-            }
-          })}
-        </Carousel>
-      </Col>
+      <S.MainText>DESTAQUES</S.MainText>
+      <Row justify="center">
+        <Col span={12}>
+          <Carousel autoplay dotPosition={"top"}>
+            {filmesDestaques[2].Subcategorias.map((filme) => {
+              if(filme.destaque) {
+                return (
+                  <NavLink to={`/filme/${filme.Id}`}> 
+                    <div key={filme.Id}>
+                      <img style={contentStyle} src={filme.Imagem} alt={filme.Titulo} />
+                    </div>
+                  </NavLink> 
+                );
+              } else {
+                return null;
+              }
+            })}
+          </Carousel>
+        </Col>
+      </Row>
     </>
   );
 };

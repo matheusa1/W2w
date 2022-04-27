@@ -16,6 +16,9 @@ const Applayout = ({children}) => {
   
 
   <Layout style={{minHeight:'100vh', backgroundColor:'#FFF'}}>
+    <div>
+      
+    </div>
     <Sider
       collapsible 
       collapsed={showMenu} 
@@ -58,7 +61,7 @@ const Applayout = ({children}) => {
           {children}
           </S.LayoutFixHeight>
       </Content>
-      {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </Layout>
   </Layout>
 )}
