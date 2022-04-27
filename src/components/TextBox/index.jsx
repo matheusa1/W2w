@@ -1,4 +1,4 @@
-import { Typography, Space, Card } from 'antd';
+import { Typography, Space, Card, Col, Row } from 'antd';
 
 const TextBox = props => {
     const Text = Typography;
@@ -7,10 +7,28 @@ const TextBox = props => {
     return (
         <Card>
             <Space direction='vertical' align='center'>
-                <Text style={{fontSize: FontSize}}>Nome: {props.Name}</Text>
-                <Text style={{fontSize: FontSize}}>Email: {props.Email}</Text>
-                <Text style={{fontSize: FontSize}}>Telefone: {props.Telefone}</Text>
-                <Text style={{fontSize: FontSize}}>Senha: {props.Senha}</Text>
+                <Col>
+                    <Text style={{fontSize: FontSize}}>Nome:</Text>          
+                </Col>
+                <Col>
+                    <Text style={{fontSize: FontSize}}>{props.Name}</Text>          
+                </Col>
+                <Col>
+                    <Text style={{fontSize: FontSize}}>Email:</Text>           
+                </Col>
+                    <Text style={{fontSize: FontSize}}>{props.Email}</Text>           
+                <Col>
+                    <Text style={{fontSize: FontSize}}>Telefone:</Text>              
+                </Col>
+                <Col>
+                    <Text style={{fontSize: FontSize}}>{props.Telefone}</Text>              
+                </Col>
+                <Col>
+                    <Text style={{fontSize: FontSize}}>Senha:</Text>
+                </Col>
+                <Col>
+                    <Text style={{fontSize: FontSize}}>{props.Senha}</Text>
+                </Col>                         
             </Space>
         </Card>
     )

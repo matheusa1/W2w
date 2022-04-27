@@ -1,5 +1,4 @@
 import { Avatar, Space } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 
 const ProfilePic = props => {
 
@@ -7,7 +6,7 @@ const ProfilePic = props => {
         <Space direction='vertical' align='center'>
             <Avatar 
                 size={102} 
-                icon={<UserOutlined/>}
+                src={props.Pic}
             />
         </Space>
     )
