@@ -3,14 +3,14 @@ import ResultsCards from "./components/ResultsCards";
 import Data from "../../components/Data/dados_para_teste.json";
 import { useState } from "react";
 import { Title } from "../../components/Title";
-import * as S from "./styles";
+import { Divider } from 'antd';
 
 const CategoryPage = () => {
   const [value, setValue] = useState(0);
 
   return (
     <>
-      <Title>Categorias</Title>
+      <Title>CATEGORIAS</Title>
 
       <Row justify="space-evenly">
         <Col span={3}>
@@ -18,7 +18,13 @@ const CategoryPage = () => {
             type="primary"
             shape="round"
             size="large"
-            style={{
+            style={value === 0 ? {
+              width: "100%",
+              height: "3rem",
+              minWidth: "120px",
+              backgroundColor: "#002a52",
+              border: "2px solid #d0d7de",
+            } : {
               width: "100%",
               height: "3rem",
               minWidth: "120px",
@@ -36,7 +42,13 @@ const CategoryPage = () => {
             type="primary"
             shape="round"
             size="large"
-            style={{
+            style={value === 1 ? {
+              width: "100%",
+              height: "3rem",
+              minWidth: "120px",
+              backgroundColor: "#002a52",
+              border: "2px solid #d0d7de",
+            } : {
               width: "100%",
               height: "3rem",
               minWidth: "120px",
@@ -54,7 +66,13 @@ const CategoryPage = () => {
             type="primary"
             shape="round"
             size="large"
-            style={{
+            style={value === 2 ? {
+              width: "100%",
+              height: "3rem",
+              minWidth: "120px",
+              backgroundColor: "#002a52",
+              border: "2px solid #d0d7de",
+            } : {
               width: "100%",
               height: "3rem",
               minWidth: "120px",
@@ -68,11 +86,17 @@ const CategoryPage = () => {
           </Button>
         </Col>
         <Col span={3}>
-          <Button
+          <Button 
             type="primary"
             shape="round"
             size="large"
-            style={{
+            style={value === 3 ? {
+              width: "100%",
+              height: "3rem",
+              minWidth: "120px",
+              backgroundColor: "#002a52",
+              border: "2px solid #d0d7de",
+            } : {
               width: "100%",
               height: "3rem",
               minWidth: "120px",
@@ -87,7 +111,7 @@ const CategoryPage = () => {
         </Col>
       </Row>
 
-      <S.MainText>{Data.Categorias[value].Titulo}</S.MainText>
+      <Divider />
 
       <Row justify="center">
         <Col span={24}>

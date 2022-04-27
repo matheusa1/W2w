@@ -15,7 +15,7 @@ const Applayout = ({children}) => {
   return(
   
 
-  <Layout style={{minHeight:'100vh'}}>
+  <Layout style={{minHeight:'100vh', backgroundColor:'#FFF'}}>
     <Sider
       collapsible 
       collapsed={showMenu} 
@@ -52,7 +52,7 @@ const Applayout = ({children}) => {
       </Menu>
     </Sider>
     <Layout>
-      <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
+      <Header className="site-layout-sub-header-background" style={{ padding: 0, height: "30px" }} />
       <Content style={{ margin: '24px 16px 0' }}>
         <S.LayoutFixHeight>
           {children}

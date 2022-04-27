@@ -1,14 +1,17 @@
-import { Col } from "antd";
+import { Col, Row } from "antd";
 import * as S from "../../components/Title";
 import LoginForm from "../../components/LoginForm";
 
 const LoginPage = () => {
   return (
     <>
-      <Col span={8} offset={8}>
-        <S.Title>Login</S.Title>
+    <S.Title>LOGIN</S.Title>    
+    <Row justify="center">
+      <Col span={8}>
         <LoginForm />
       </Col>
+    </Row>
+      
     </>
   );
 };

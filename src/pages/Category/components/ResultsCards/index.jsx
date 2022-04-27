@@ -8,7 +8,7 @@ const ResultsCards = ({ value, category }) => {
   return (
     <>
       <Row gutter={32} justify="center">
-        {categoryItems.map((item, index) => {
+        {categoryItems.map((item) => {
           return (
             <NavLink to={`/${route}/${item.Id}`}>
               <Col >
