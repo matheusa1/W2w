@@ -1,6 +1,11 @@
 import { Button, Row, Col } from "antd";
 
 const CategoryPage = () => {
+
+  [ "Plataformas", "Filmes", "Séries", "Animes"].foreach(data) {
+    return (
+  }
+
   return (
     <>
       <Row justify="space-evenly">
