@@ -1,12 +1,12 @@
-import { Image } from 'antd';
+import { Image, Row } from 'antd';
 
 const PosterImg = props => {
   return (
-    <Image
-      preview={false}
-      width={400}
-      src={props.posterLink}
-    />
+      <Image
+        preview={false}
+        width={400}
+        src={props.posterLink}
+        />
   );
 }
 

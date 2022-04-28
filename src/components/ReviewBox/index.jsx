@@ -18,7 +18,7 @@ const ReviewBox = props => {
             />
         }
         >
-            <Space align="center" direction="vertical" size="middle" style={{ display: 'flex' }} >
+            <Space align="center" direction="vertical" size="middle">
                         <Rating />
                         <OverRate rate={props.rate} rateIMDB={props.rateIMDB}/>
                         <W2w />

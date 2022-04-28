@@ -1,4 +1,4 @@
-import { Divider, List, Card, Space, Avatar, Typography } from 'antd';
+import { Divider, List, Card, Row, Avatar, Typography, Space } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 
 const W2w = props => {
@@ -18,7 +18,7 @@ const W2w = props => {
     },
     ];
         return (
-            <Space>
+            <Row>
                 <Card align="center">
                 <Title ia level={3}>Where 2 Watch</Title>
                 <Divider />
@@ -44,7 +44,7 @@ const W2w = props => {
                 )}
                 />
             </Card>
-            </Space>
+            </Row>
 
     )
 }
