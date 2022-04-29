@@ -1,5 +1,4 @@
 import { Col, Row, Card, Space } from "antd"
-import HeartFav from "../HeartFav"
 import OverRate from "../OverallRating"
 import Rating from "../Rating"
 import W2w from "../W2w"
