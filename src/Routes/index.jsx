@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Cadastro from '../pages/Cadastro'
+import Sobre from '../pages/Sobre'
 import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import FilmeDetails from '../pages/FilmesDetails'
@@ -12,6 +13,7 @@ const AppRoutes = ()=>(
       <Route path="/register" element={<Cadastro />} />
       <Route path="/filme/:id" element={<FilmeDetails />} />
       <Route path="/search" element={<SearchPage />}/>
+      <Route path="/about" element={<Sobre />}/>
   </Routes>
 )
 
