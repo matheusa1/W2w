@@ -4,7 +4,7 @@ import * as S from "../../components/Title";
 
 const CadastroPage = () => (
   <>
-    <S.Title>Cadastre-se</S.Title>
+    <S.Title>CADASTRE-SE</S.Title>
     <Row>
       <Col span={8} offset={8}>
         <RegisterForm />
