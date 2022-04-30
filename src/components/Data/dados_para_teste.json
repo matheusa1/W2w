@@ -1,0 +1,210 @@
+{
+  "Categorias": [
+    {
+      "Titulo": "Plataformas",
+      "Subcategorias": [
+        {
+          "Titulo": "Disney+",
+          "Imagem": "https://www.logo.wine/a/logo/Disney%2B/Disney%2B-White-Dark-Background-Logo.wine.svg",
+          "Id": 1,
+          "destaque": false
+        },
+        {
+          "Titulo": "HBO Max",
+          "Imagem": "https://hbomax-images.warnermediacdn.com/2020-05/square%20social%20logo%20400%20x%20400_0.png",
+          "Id": 2,
+          "destaque": false
+        },
+        {
+          "Titulo": "Prime Video",
+          "Imagem": "https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2020/10/12194108/Amazon-Prime.png?fit=512%2C512&ssl=1",
+          "Id": 3,
+          "destaque": false
+        },
+        {
+          "Titulo": "Crunchyroll",
+          "Imagem": "https://www.logo.wine/a/logo/Crunchyroll/Crunchyroll-Logo.wine.svg",
+          "Id": 4,
+          "destaque": false
+        },
+        {
+          "Titulo": "Netflix",
+          "Imagem": "https://www.logo.wine/a/logo/Netflix/Netflix-Logo.wine.svg",
+          "Id": 5,
+          "destaque": false
+        },
+        {
+          "Titulo": "Discovery+",
+          "Imagem": "https://labsnews.com/pt-br/wp-content/uploads/sites/5/2021/06/ViewImage-scaled.jpeg",
+          "Id": 6,
+          "destaque": false
+        }
+      ]
+    },
+    {
+      "Titulo": "Filmes",
+      "Subcategorias": [
+        {
+          "Titulo": "Eternos",
+          "Imagem": "https://disneyplusbrasil.com.br/wp-content/uploads/2021/11/Eternos-Logo.jpg",
+          "Id": 7,
+          "destaque": false
+        },
+        {
+          "Titulo": "GhostBusters",
+          "Imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI2GffcOen_KQkUD3CPWaUdewgmEd0uSKC-w&usqp=CAU",
+          "Id": 8,
+          "destaque": false
+        },
+        {
+          "Titulo": "Cruella",
+          "Imagem": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/306BD77719A275BA551B9F9883EA1080F3A758A4D78EBE129F05592913DCB25E/scale?width=400&aspectRatio=1.78&format=jpeg",
+          "Id": 9,
+          "destaque": false
+        },
+        {
+          "Titulo": "Shang Chi",
+          "Imagem": "https://disneyplusbrasil.com.br/wp-content/uploads/2021/09/Shang-Chi-e-a-Lenda-dos-Dez-Aneis-DisneyPlus-1024x576.jpg",
+          "Id": 10,
+          "destaque": false
+        },
+        {
+          "Titulo": "Kiss",
+          "Imagem": "https://eventicket.s3-sa-east-1.amazonaws.com/imgs/19483-kiss-2021-rp-uhuu-banner-510x310-v1.jpg",
+          "Id": 11,
+          "destaque": false
+        },
+        {
+          "Titulo": "The Avengers",
+          "Imagem": "https://http2.mlstatic.com/D_NQ_NP_921732-MLB27835142637_072018-O.jpg",
+          "Id": 12,
+          "destaque": false
+        },
+        {
+          "Titulo": "Click",
+          "Imagem": "https://i.ytimg.com/vi/Rz6jHTpi6zw/maxresdefault.jpg",
+          "Id": 13,
+          "destaque": false
+        },
+        {
+          "Titulo": "Como se fosse a primeira vez",
+          "Imagem": "https://disneyplusbrasil.com.br/wp-content/uploads/2021/10/image-44.png",
+          "Id": 14,
+          "destaque": false
+        }
+      ]
+    },
+    {
+      "Titulo": "Séries",
+      "Subcategorias": [
+        {
+          "Titulo": "Todo Mundo Odeia o Chris",
+          "Imagem": "https://1.bp.blogspot.com/-Q2dwbE4ea24/YFDnX9Oe9CI/AAAAAAAA1Oc/jG8tk3z-LWs3WUt7ElUYMv6HEjNH_-eZgCLcBGAsYHQ/s466/TodoMundoOdeiaoChris_2021_banner.jpg",
+          "Id": 15,
+          "destaque": true
+        },
+        {
+          "Titulo": "Mandalorian",
+          "Imagem": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/5883B0B519D0B06CB7C5BD61D7D34C1C5C19ED2F8C069443EC95B23C1291F90F/badging?width=400&aspectRatio=1.78&format=jpeg&label=disneyplusoriginal",
+          "Id": 16,
+          "destaque": false
+        },
+        {
+          "Titulo": "The 100",
+          "Imagem": "https://pipocasclub.com.br/wp-content/uploads/2020/05/the-100-3.jpg",
+          "Id": 17,
+          "destaque": false
+        },
+        {
+          "Titulo": "Round 6",
+          "Imagem": "https://static.wixstatic.com/media/1f8f2a_d3a0cff0c169465d8e88d59cc7e2c3bb~mv2.png/v1/fit/w_720%2Ch_480%2Cal_c/file.png",
+          "Id": 18,
+          "destaque": true
+        },
+        {
+          "Titulo": "Cosmos, Mundos Possíveis",
+          "Imagem": "https://t.ctcdn.com.br/4sbaCA0GAPsEUzkU2-VVsHV2x-M=/1400x788/smart/i325119.png",
+          "Id": 19,
+          "destaque": true
+        },
+        {
+          "Titulo": "Invencível",
+          "Imagem": "https://1.bp.blogspot.com/-yuBis9oVbls/YAuUP7uUQjI/AAAAAAAAhHU/LA_3TcqyDrsU6e6zk0YSiOtPFo6h9j2PgCNcBGAsYHQ/s1280/abc.jpg",
+          "Id": 20,
+          "destaque": false
+        },
+        {
+          "Titulo": "Rick and Morty",
+          "Imagem": "https://imagens.blogdaclara.net/img/68747470733a2f2f737461746963302e7468657468696e6773696d616765732e636f6d2f776f726470726573732f77702d63/6f6e74656e742f75706c6f6164732f323031392f31302f726d312e6a7065673f713d353026616d703b6669743d63726f7026/616d703b773d37343026616d703b6470723d312e35.jpeg",
+          "Id": 21,
+          "destaque": true
+        },
+        {
+          "Titulo": "Departamento de Conspiração",
+          "Imagem": "https://i.ytimg.com/vi/3jDONuLSKnI/maxresdefault.jpg",
+          "Id": 22,
+          "destaque": true
+        }
+      ]
+    },
+    {
+      "Titulo": "Animes",
+      "Subcategorias": [
+        {
+          "Titulo": "Naruto",
+          "Imagem": "https://http2.mlstatic.com/D_NQ_NP_745259-MLB29106609069_012019-O.jpg",
+          "Id": 23,
+          "destaque": false
+        },
+        {
+          "Titulo": "One Piece",
+          "Imagem": "https://http2.mlstatic.com/D_NQ_NP_968164-MLB41361205281_042020-O.jpg",
+          "Id": 24,
+          "destaque": false
+        },
+        {
+          "Titulo": "Dragon Ball Super",
+          "Imagem": "https://http2.mlstatic.com/D_NQ_NP_829948-MLB47498583185_092021-O.jpg",
+          "Id": 25,
+          "destaque": false
+        },
+        {
+          "Titulo": "Hunter x Hunter",
+          "Imagem": "https://i1.wp.com/www.jbox.com.br/wp/wp-content/uploads/2019/11/hunterxhunter-banner.jpg?resize=774%2C382&quality=99&strip=all&ssl=1",
+          "Id": 26,
+          "destaque": false
+        },
+        {
+          "Titulo": "One Punch Man",
+          "Imagem": "https://i.kym-cdn.com/photos/images/newsfeed/000/833/247/578.png",
+          "Id": 27,
+          "destaque": false
+        },
+        {
+          "Titulo": "Jojo's Bizarre Adventure",
+          "Imagem": "https://wallpapers.com/images/high/jojo-bizarre-adventure-hero-banners-97au0jin9lw0i6lz.jpg",
+          "Id": 28,
+          "destaque": false
+        },
+        {
+          "Titulo": "Akame ga Kill",
+          "Imagem": "https://i.pinimg.com/originals/0c/e1/b5/0ce1b5c2a63b51e8dfd5673c31d272de.jpg",
+          "Id": 29,
+          "destaque": false
+        },
+        {
+          "Titulo": "Platinum End",
+          "Imagem": "https://sportshub.cbsistatic.com/i/2021/08/09/ccd7aada-f82a-40df-aaa2-75b8cea18126/platinum-end-1274254.jpg",
+          "Id": 30,
+          "destaque": false
+        },
+        {
+          "Titulo": "My hero Academia",
+          "Imagem": "https://i.pinimg.com/originals/2b/b5/92/2bb592b4863f21cae1af9ace51034b94.png",
+          "Id": 31,
+          "destaque": false
+        }
+      ]
+    }
+  ]
+}

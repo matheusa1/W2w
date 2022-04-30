@@ -4,6 +4,7 @@ import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import FilmeDetails from '../pages/FilmesDetails'
 import SearchPage from "../pages/Busca";
+import CategoryPage from "../pages/Category"
 
 const AppRoutes = ()=>(
   <Routes>
@@ -12,6 +13,7 @@ const AppRoutes = ()=>(
       <Route path="/register" element={<Cadastro />} />
       <Route path="/filme/:id" element={<FilmeDetails />} />
       <Route path="/search" element={<SearchPage />}/>
+      <Route path="/category" element={<CategoryPage />} />
   </Routes>
 )
 

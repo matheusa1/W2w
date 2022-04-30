@@ -15,7 +15,7 @@ const Applayout = ({children}) => {
   return(
   
 
-  <Layout style={{minHeight:'100vh'}}>
+  <Layout style={{minHeight:'100vh', backgroundColor:'#FFF'}}>
     <Sider
       collapsible 
       collapsed={showMenu} 
@@ -46,16 +46,19 @@ const Applayout = ({children}) => {
         <Menu.Item key="6" icon={<SearchOutlined />}>
         <NavLink to="/search">busca</NavLink>
         </Menu.Item>
+        <Menu.Item key="7">
+        <NavLink to="/category">Categoria</NavLink>
+        </Menu.Item>
       </Menu>
     </Sider>
     <Layout>
-      <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
+      <Header className="site-layout-sub-header-background" style={{ padding: 0, height: "30px" }} />
       <Content style={{ margin: '24px 16px 0' }}>
         <S.LayoutFixHeight>
           {children}
           </S.LayoutFixHeight>
       </Content>
-      {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </Layout>
   </Layout>
 )}
