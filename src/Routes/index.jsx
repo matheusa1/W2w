@@ -3,6 +3,7 @@ import Cadastro from "../pages/Cadastro";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import FilmeDetails from "../pages/FilmesDetails";
+import Sobre from '../pages/Sobre'
 import SearchPage from "../pages/Busca";
 import CategoryPage from "../pages/Category";
 import ProfilePage from "../pages/Profile";
@@ -16,6 +17,7 @@ const AppRoutes = () => (
     <Route path="/search" element={<SearchPage />} />
     <Route path="/category" element={<CategoryPage />} />
     <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/about" element={<Sobre />}/>
   </Routes>
 );
 
