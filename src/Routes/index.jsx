@@ -6,7 +6,8 @@ import FilmeDetails from "../pages/FilmesDetails";
 import Sobre from '../pages/Sobre'
 import SearchPage from "../pages/Busca";
 import CategoryPage from "../pages/Category";
-import ProfilePage from "../pages/Profile";
+import EditProfile from "../pages/EditProfile";
+import PerfilPage from "../pages/Perfil";
 
 const AppRoutes = () => (
   <Routes>
@@ -16,7 +17,8 @@ const AppRoutes = () => (
     <Route path="/filme/:id" element={<FilmeDetails />} />
     <Route path="/search" element={<SearchPage />} />
     <Route path="/category" element={<CategoryPage />} />
-    <Route path="/profile" element={<ProfilePage />} />
+    <Route path="/profile" element={<PerfilPage />} />
+    <Route path="/profile/edit" element={<EditProfile />} />
       <Route path="/about" element={<Sobre />}/>
   </Routes>
 );

@@ -6,7 +6,7 @@ const ButtonEditProf = props => {
     return (
         <>
             <Button type="primary">
-                <NavLink to="/perfil/edit">Editar Perfil</NavLink>
+                <NavLink to="/profile/edit">Editar Perfil</NavLink>
             </Button>
         </>
     )

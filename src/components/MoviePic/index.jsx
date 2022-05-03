@@ -1,12 +1,14 @@
-import { Image, Row } from 'antd';
+import { Image, Card } from 'antd';
 
 const PosterImg = props => {
   return (
-      <Image
-        preview={false}
-        width={400}
-        src={props.posterLink}
-        />
+    <Card width={400} size="small" style={{backgroundColor: "#363636"}}>
+        <Image
+          preview={false}
+          width={400}
+          src={props.posterLink}
+          />
+    </Card>
   );
 }
 
