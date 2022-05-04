@@ -42,7 +42,6 @@ const ProfileSettings = props => {
         <br />
         <Text style={{fontSize: 24}} strong>Bio</Text>
         <TextArea autoSize={{ minRows: 3, maxRows: 5 }} showCount maxLength={500} allowClear size="large"/>
-        <br />
         <Row gutter={8}>
             <Col span={12}>
                 <Button shape="round" size="large" block>Alterar senha</Button>
@@ -51,7 +50,6 @@ const ProfileSettings = props => {
                 <Button shape="round" size="large" block type="primary">Salvar mudanças</Button>
             </Col>
         </Row>
-        <br />
         <Button  shape="round" size="large" block danger>DESATIVAR CONTA</Button>
     </Space>
   );
