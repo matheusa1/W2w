@@ -1,14 +1,14 @@
-import { Avatar, Space } from 'antd';
+import { Avatar } from 'antd';
 
 const ProfilePic = props => {
 
     return (
-        <Space direction='vertical' align='center'>
+        <>
             <Avatar 
                 size={102} 
                 src={props.Pic}
             />
-        </Space>
+        </>
     )
 }
 
