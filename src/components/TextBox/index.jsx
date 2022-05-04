@@ -1,4 +1,4 @@
-import { Typography, Space, Card, Col, Row, Divider } from 'antd';
+import { Typography, Col, Row } from 'antd';
 import ButtonEditProf from '../ButtonEditProf';
 import ProfilePic from '../ProfilePic';
 
@@ -16,8 +16,6 @@ const TextBox = props => {
                     </Col>
                     <Col>
                         <Text style={{fontSize: FontSizeTitle}}>{props.Name}</Text>
-                    </Col>
-                    <Col>
                         <ButtonEditProf/>
                     </Col>
                 </Row>

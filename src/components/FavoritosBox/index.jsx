@@ -1,4 +1,4 @@
-import { Row, Col, Space, Divider, Typography, Card, Image } from "antd";
+import { Row, Col, Card, Image } from "antd";
 
 const FavoritosBox = () => {
 
