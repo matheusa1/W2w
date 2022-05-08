@@ -12,7 +12,7 @@ const TextBox = props => {
             <Col >
                 <Row gutter={16} align="middle">
                     <Col>
-                        <ProfilePic />
+                        <ProfilePic Pic={props.Pic}/>
                     </Col>
                     <Col>
                         <Text style={{fontSize: FontSizeTitle}}>{props.Name}</Text>
