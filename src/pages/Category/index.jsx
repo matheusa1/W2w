@@ -1,12 +1,29 @@
-import { Button, Row, Col } from "antd";
+import { Button, Row, Col, Divider } from "antd";
 import ResultsCards from "./components/ResultsCards";
-import Data from "../../components/Data/dados_para_teste.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Title } from "../../components/Title";
-import { Divider } from 'antd';
+import Axios from "axios"
 
 const CategoryPage = () => {
   const [value, setValue] = useState(0);
+  const [Data, setData] = useState();
+
+  let response;
+
+  const requestData = async value => {
+    const axios = Axios;
+    value === 0 ? (
+      response = await axios.get("http://localhost:1337/api/platforms?populate=*")
+    ) : (
+      // response = await axios.get(`http://localhost:1337/api/medias/${value - 1}`)
+      console.log("a")
+    )
+    setData(response.data.data);
+    console.log(response.data.data);
+  }
+  useEffect(() => {
+    requestData(value);
+  }, []);
 
   return (
     <>
@@ -32,6 +49,7 @@ const CategoryPage = () => {
             }}
             onClick={() => {
               setValue(0);
+              requestData(value);
             }}
           >
             Plataformas
@@ -56,6 +74,7 @@ const CategoryPage = () => {
             }}
             onClick={() => {
               setValue(1);
+              requestData(value);
             }}
           >
             Filmes
@@ -80,6 +99,7 @@ const CategoryPage = () => {
             }}
             onClick={() => {
               setValue(2);
+              requestData(value);
             }}
           >
             Séries
@@ -104,6 +124,7 @@ const CategoryPage = () => {
             }}
             onClick={() => {
               setValue(3);
+              requestData(value);
             }}
           >
             Animes
@@ -115,7 +136,7 @@ const CategoryPage = () => {
 
       <Row justify="center">
         <Col span={24}>
-          <ResultsCards value={value} category={Data.Categorias[value]} />
+          <ResultsCards value={value} category={Data} />
         </Col>
       </Row>
     </>
