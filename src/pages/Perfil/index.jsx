@@ -2,6 +2,7 @@ import { Row, Col, Divider } from "antd";
 import FavoritosBox from "../../components/FavoritosBox";
 import TextBox from "../../components/TextBox";
 import TotalWatched from "../../components/TotalWatched";
+import WatchedBox from "../../components/WatchedBox";
 
 const ProfilePage = () => {
  
@@ -9,6 +10,9 @@ const ProfilePage = () => {
   let Pic = 'https://super.abril.com.br/wp-content/uploads/2018/05/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png'
   let Name = 'Andreias Pereira'
   let Bio = 'Tô fazendo nadammmmm vô vê uns filminho. Meu ódio por Hollywood é algo extremamente real. Queria que Sion Sono fosse meu pai.'
+  let Poster = "https://img.elo7.com.br/product/zoom/2C15759/big-poster-anime-black-clover-lo001-tamanho-90x60-cm-presente-nerd.jpg"
+  let Title = "Black Clover"
+  let Rate = 4.5
 
   return (
   <>
@@ -28,7 +32,7 @@ const ProfilePage = () => {
         </Col>
         <br/>
         <Col>
-          <FavoritosBox/>
+          <FavoritosBox Poster={Poster} Title={Title}/>
         </Col>
       </div> 
     </Row>
@@ -40,7 +44,7 @@ const ProfilePage = () => {
             </Col>
             <br/>
             <Col>
-                <FavoritosBox/>
+                <WatchedBox Poster={Poster} Title={Title} Rate={Rate}/>
             </Col>
         </div>
     </Row>
