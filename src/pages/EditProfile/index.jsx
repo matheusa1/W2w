@@ -1,4 +1,4 @@
-import { Typography, Row, Col, Space, Divider } from "antd";
+import { Typography, Row, Col, Divider } from "antd";
 import EditAvatar from "../../components/EditAvatar";
 import ProfileSettings from "../../components/ProfileSettings";
 
@@ -11,7 +11,7 @@ const EditProfile = () => {
   return (
     <>
       <Row>
-        <Col xxl={{push: 2}} xl={{push: 2}} lg={{push: 1}} md={{push: 6}} sm={{span: 16, push: 4}} xs={{span: 16, push: 4}}>
+        <Col xxl={{push: 1}} xl={{push: 2}} lg={{push: 1}} md={{push: 6}} sm={{span: 16, push: 4}} xs={{span: 16, push: 4}}>
           <Title>Configurações do perfil</Title>
         </Col>
       </Row>  
