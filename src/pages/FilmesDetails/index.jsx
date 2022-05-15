@@ -18,7 +18,7 @@ const FilmeDetailsPage = props => {
 
   const requestMedia = async () => {
     const axios = Axios;
-    const response = await axios.get(`http://localhost:1337/api/medias/${id}`)
+    const response = await axios.get(`http://localhost:1337/api/medias/${id}?populate=*`);
     setMedias(response.data.data);
     console.log(response.data);
   }
