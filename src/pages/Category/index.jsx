@@ -1,12 +1,16 @@
-import { Button, Row, Col, Divider } from "antd";
+import { Button, Row, Col, Divider, Input } from "antd";
 import ResultsCards from "./components/ResultsCards";
 import { useState, useEffect } from "react";
 import { Title } from "../../components/Title";
 import Axios from "axios";
 
+const { Search } = Input;
+const onSearch = (value) => console.log(value);
+
 let value = 0;
 const CategoryPage = () => {
   const [Data, setData] = useState();
+  const [inputText, setInputText] = useState();
 
   let categoryId;
 
@@ -28,7 +32,7 @@ const CategoryPage = () => {
     const response = await axios.get(
       `http://localhost:1337/api/${
         value === 0 ? "platforms" : `categories/${categoryId}`
-      }?populate=*`
+      }?populate=%2A`
     );
     setData(response.data.data);
   };
@@ -44,7 +48,7 @@ const CategoryPage = () => {
 
   return (
     <>
-      <Title>CATEGORIAS</Title>
+      <Title>PESQUISAR</Title>
 
       <Row justify="space-evenly">
         <Col span={3}>
@@ -153,10 +157,25 @@ const CategoryPage = () => {
         </Col>
       </Row>
 
+      <Row justify="center">
+        <Col span={12}>
+          <Search
+            size="large"
+            style={{ marginTop: "20px" }}
+            placeholder="input search text"
+            onChange={(e) => {
+              setInputText(e.target.value);
+            }}
+            enterButton
+          />
+        </Col>
+      </Row>
+
       <Divider />
 
       <Row justify="center">
         <Col span={24}>
+          <p>{inputText}</p>
           {Data === undefined ? (
             console.log("err")
           ) : (

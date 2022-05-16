@@ -68,10 +68,7 @@ const Applayout = ({ children }) => {
             <NavLink to="/">Home</NavLink>
           </Menu.Item>
           <Menu.Item key="6" icon={<SearchOutlined />}>
-            <NavLink to="/search">Busca</NavLink>
-          </Menu.Item>
-          <Menu.Item key="7" icon={<AppstoreOutlined />}>
-            <NavLink to="/category">Categoria</NavLink>
+            <NavLink to="/category">Busca</NavLink>
           </Menu.Item>
         </Menu>
       </Sider>
