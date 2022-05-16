@@ -8,9 +8,9 @@ const ResultsCards = ({ value, category }) => {
   return (
     <>
       <Row gutter={32} justify="center">
-        {itens.map((item) => {
+        {itens.map((Content) => {
           return (
-            <NavLink to={`/${route}/${item?.id}`}>
+            <NavLink to={`/${route}/${Content?.id}`}>
               <Col>
                 <Card
                   hoverable
@@ -22,10 +22,10 @@ const ResultsCards = ({ value, category }) => {
                           ? { width: "240px", height: "240px" }
                           : { width: "290px", height: "180px" }
                       }
-                      alt={`Logo ${item?.attributes.logo}`}
+                      alt={`Logo ${Content?.attributes.logo}`}
                       src={
                         value === 0
-                          ? item?.attributes.logo.data.attributes.name
+                          ? Content?.attributes.logo.data.attributes.name
                           : ""
                       }
                     />
@@ -34,7 +34,7 @@ const ResultsCards = ({ value, category }) => {
                 >
                   <Card.Meta
                     title={
-                      value === 0 ? item?.attributes.name : item?.attributes.title
+                      value === 0 ? Content?.attributes.name : Content?.attributes.title
                     }
                   />
                 </Card>
