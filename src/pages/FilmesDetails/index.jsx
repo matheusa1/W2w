@@ -12,6 +12,7 @@ const FilmeDetailsPage = props => {
   const { Text, Title } = Typography;
   
   const [medias, setMedias] = useState();
+  const [logo, setLogo] = useState();
   
   const params = useParams();
   const { id } = params;
@@ -19,6 +20,8 @@ const FilmeDetailsPage = props => {
   const requestMedia = async () => {
     const axios = Axios;
     const response = await axios.get(`http://localhost:1337/api/medias/${id}?populate=*`)
+    const responselogo = await axios.get(`http://localhost:1337/api/medias/${id}?populate=platforms.logo`)
+    setLogo(responselogo.data.data)
     setMedias(response.data.data);
   }
   useEffect(() => {
@@ -38,6 +41,8 @@ const FilmeDetailsPage = props => {
   let releaseDate = medias?.attributes.releaseDate;
   let banner = getFullUrl(medias?.attributes?.banner?.data.attributes?.url);
   let age = medias?.attributes?.minimumAge;
+  let plat_data = logo?.attributes.platforms.data.map(item => item.attributes);
+
 
 
   return (
@@ -57,7 +62,7 @@ const FilmeDetailsPage = props => {
         </Col>
 
         <Col xxl={8} xl={24} lg={24}>
-            <ReviewBox banner={banner} rate={rate} rateIMDB={rateIMDB}/>
+            <ReviewBox plat_data={plat_data} banner={banner} rate={rate} rateIMDB={rateIMDB}/>
         </Col>
         
     </Row>
