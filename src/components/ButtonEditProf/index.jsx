@@ -1,7 +1,7 @@
 import { Space, Button} from 'antd';
 import { NavLink } from 'react-router-dom';
 
-const ButtonEditProf = props => {
+const ButtonEditProf = () => {
 
     return (
         <>

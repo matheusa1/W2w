@@ -1,36 +1,27 @@
-import { Typography, Space, Card, Col, Row } from 'antd';
+import { Typography, Col, Row } from 'antd';
+import ButtonEditProf from '../ButtonEditProf';
+import ProfilePic from '../ProfilePic';
 
 const TextBox = props => {
     const Text = Typography;
-    let FontSize = 20;
+    let FontSizeTitle = 30;
+    let FontSize = 14;
 
     return (
-        <Card>
-            <Space direction='vertical' align='center'>
-                <Col>
-                    <Text style={{fontSize: FontSize}}>Nome:</Text>          
-                </Col>
-                <Col>
-                    <Text style={{fontSize: FontSize}}>{props.Name}</Text>          
-                </Col>
-                <Col>
-                    <Text style={{fontSize: FontSize}}>Email:</Text>           
-                </Col>
-                    <Text style={{fontSize: FontSize}}>{props.Email}</Text>           
-                <Col>
-                    <Text style={{fontSize: FontSize}}>Telefone:</Text>              
-                </Col>
-                <Col>
-                    <Text style={{fontSize: FontSize}}>{props.Telefone}</Text>              
-                </Col>
-                <Col>
-                    <Text style={{fontSize: FontSize}}>Senha:</Text>
-                </Col>
-                <Col>
-                    <Text style={{fontSize: FontSize}}>{props.Senha}</Text>
-                </Col>                         
-            </Space>
-        </Card>
+        <Row>
+            <Col >
+                <Row gutter={16} align="middle">
+                    <Col>
+                        <ProfilePic Pic={props.Pic}/>
+                    </Col>
+                    <Col>
+                        <Text style={{fontSize: FontSizeTitle}}>{props.Name}</Text>
+                        <ButtonEditProf/>
+                    </Col>
+                </Row>
+                <Text style={{fontSize: FontSize}}>{props.Bio}</Text>
+            </Col>
+        </Row>
     )
 }
 
