@@ -1,4 +1,4 @@
-import { Typography, Row, Col, Space, Input, Divider, Button } from "antd";
+import { Typography, Row, Col, Space, Input, Button } from "antd";
 
 
 const ProfileSettings = props => {

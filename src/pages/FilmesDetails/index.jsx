@@ -12,35 +12,45 @@ const FilmeDetailsPage = props => {
   const { Text, Title } = Typography;
   
   const [medias, setMedias] = useState();
+  const [logo, setLogo] = useState();
   
   const params = useParams();
   const { id } = params;
 
   const requestMedia = async () => {
     const axios = Axios;
-    const response = await axios.get(`http://localhost:1337/api/medias/${id}`)
+    const response = await axios.get(`http://localhost:1337/api/medias/${id}?populate=*`)
+    const responselogo = await axios.get(`http://localhost:1337/api/medias/${id}?populate=platforms.logo`)
+    setLogo(responselogo.data.data)
     setMedias(response.data.data);
-    console.log(response.data);
   }
   useEffect(() => {
     requestMedia();
   }, []);
   
+  let base_url = "http://localhost:1337"
+  const  getFullUrl = path => `${base_url}${path}`
+  
   let titulo = medias?.attributes.title;
   let desc = medias?.attributes.description;
-  let posterLink = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uq2u8HgtLFJkjNq2kHb2jvipIPT.jpg"
+  let posterLink = medias?.attributes?.poster?.data?.map(item => getFullUrl(item.attributes?.formats.medium.url));
   let trailerLink = medias?.attributes.link;
   let rate = 9.2; //Tem que fazer os bagulho lá tá ligado? Soma das rating/quantidade de rating <--
   let rateIMDB = 8.0;
-  let srcPics = ["https://www.themoviedb.org/t/p/original/4qpYhfkhWR1lFFtxjmmG9SrPDUs.jpg", "https://www.themoviedb.org/t/p/original/mND3PTdl7B6YKSLjuMTsCGXafcB.jpg", "https://www.themoviedb.org/t/p/original/fdMZRDhjQDwkNjpKrFN87D9NA8i.jpg"];
+  let srcPics = medias?.attributes?.galery?.data?.map(item => getFullUrl(item.attributes?.formats.medium.url));
   let releaseDate = medias?.attributes.releaseDate;
-  let off = 0;
+  let banner = getFullUrl(medias?.attributes?.banner?.data.attributes?.url);
+  let age = medias?.attributes?.minimumAge;
+  let plat_data = logo?.attributes.platforms.data.map(item => item.attributes);
+
+
+
   return (
     <Row justify="center">
       <Col xxl={8} xl={12} lg={12}>
             <Space direction="vertical">
               <PosterImg posterLink={posterLink} />
-              <ClassifcEt />
+              <ClassifcEt age={age} />
             </Space>
       </Col>
 
@@ -52,7 +62,7 @@ const FilmeDetailsPage = props => {
         </Col>
 
         <Col xxl={8} xl={24} lg={24}>
-            <ReviewBox rate={rate} rateIMDB={rateIMDB}/>
+            <ReviewBox plat_data={plat_data} banner={banner} rate={rate} rateIMDB={rateIMDB}/>
         </Col>
         
     </Row>
