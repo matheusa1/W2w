@@ -10,7 +10,7 @@ const onSearch = (value) => console.log(value);
 let value = 0;
 const CategoryPage = () => {
   const [Data, setData] = useState();
-  const [inputText, setInputText] = useState();
+  const [inputText, setInputText] = useState('');
 
   let categoryId;
 
@@ -162,9 +162,9 @@ const CategoryPage = () => {
           <Search
             size="large"
             style={{ marginTop: "20px" }}
-            placeholder="input search text"
-            onChange={(e) => {
-              setInputText(e.target.value);
+            placeholder="Filme, série, anime, plataforma"
+            onSearch={(e) => {
+              setInputText(e);
             }}
             enterButton
           />
@@ -175,11 +175,10 @@ const CategoryPage = () => {
 
       <Row justify="center">
         <Col span={24}>
-          <p>{inputText}</p>
           {Data === undefined ? (
             console.log("err")
           ) : (
-            <ResultsCards value={value} category={Data} />
+            <ResultsCards value={value} category={Data} searchText={inputText} />
           )}
         </Col>
       </Row>
