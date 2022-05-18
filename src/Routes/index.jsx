@@ -6,6 +6,8 @@ import FilmeDetails from "../pages/FilmesDetails";
 import Sobre from '../pages/Sobre'
 import SearchPage from "../pages/Busca";
 import CategoryPage from "../pages/Category";
+
+import EditProfile from "../pages/EditProfile";
 import PerfilPage from "../pages/Perfil";
 
 const AppRoutes = () => (
@@ -17,6 +19,7 @@ const AppRoutes = () => (
     <Route path="/search" element={<SearchPage />} />
     <Route path="/category" element={<CategoryPage />} />
     <Route path="/profile" element={<PerfilPage />} />
+    <Route path="/profile/edit" element={<EditProfile />} />
     <Route path="/about" element={<Sobre />}/>
   </Routes>
 );
