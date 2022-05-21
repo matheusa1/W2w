@@ -6,9 +6,9 @@ import FilmeDetails from "../pages/FilmesDetails";
 import Sobre from '../pages/Sobre'
 import SearchPage from "../pages/Busca";
 import CategoryPage from "../pages/Category";
+
 import EditProfile from "../pages/EditProfile";
 import PerfilPage from "../pages/Perfil";
-import SearchPage2 from "../pages/Search"
 
 const AppRoutes = () => (
   <Routes>
@@ -21,7 +21,6 @@ const AppRoutes = () => (
     <Route path="/profile" element={<PerfilPage />} />
     <Route path="/profile/edit" element={<EditProfile />} />
     <Route path="/about" element={<Sobre />}/>
-    <Route path="/search2" element={<SearchPage2/>} />
   </Routes>
 );
 

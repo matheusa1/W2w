@@ -43,32 +43,32 @@ const Applayout = ({ children }) => {
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["5"]}>
           {isSingedIn ? (
             <Menu.SubMenu title="Perfil" icon={<UserOutlined />}>
-              <Menu.Item key={0} icon={<EditOutlined />}>
-                <NavLink to="/profile">Editar perfil</NavLink>
+              <Menu.Item key={0} icon={<UserOutlined />}>
+                <NavLink to="/profile">Ver meu perfil</NavLink>
               </Menu.Item>
-              <Menu.Item key={1} icon={<SettingOutlined />}>
-                <NavLink to="/settings">Configurações</NavLink>
-              </Menu.Item>
-              <Menu.Item key={2} icon={<LogoutOutlined />}>
+              <Menu.Item key={1} icon={<LogoutOutlined />}>
                 <NavLink to="/logout">Sair</NavLink>
               </Menu.Item>
             </Menu.SubMenu>
           ) : (
             <>
-              <Menu.Item key={3} icon={<LoginOutlined />}>
+              <Menu.Item key={2} icon={<LoginOutlined />}>
                 <NavLink to="/login">Entre na sua conta</NavLink>
               </Menu.Item>
-              <Menu.Item key={4} icon={showMenu ? <FormOutlined /> : null}>
+              <Menu.Item key={3} icon={showMenu ? <FormOutlined /> : null}>
                 <NavLink to="/register">ou cadastre-se</NavLink>
               </Menu.Item>
             </>
           )}
           <S.Separator />
-          <Menu.Item key="5" icon={<HomeOutlined />}>
+          <Menu.Item key="4" icon={<HomeOutlined />}>
             <NavLink to="/">Home</NavLink>
           </Menu.Item>
-          <Menu.Item key="6" icon={<SearchOutlined />}>
-            <NavLink to="/category">Busca</NavLink>
+          <Menu.Item key="5" icon={<SearchOutlined />}>
+            <NavLink to="/search">Busca</NavLink>
+          </Menu.Item>
+          <Menu.Item key="6" icon={<AppstoreOutlined />}>
+            <NavLink to="/category">Categoria</NavLink>
           </Menu.Item>
         </Menu>
       </Sider>

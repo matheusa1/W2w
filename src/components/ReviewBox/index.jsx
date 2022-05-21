@@ -1,4 +1,4 @@
-import { Col, Row, Card, Space } from "antd"
+import { Row, Card, Space } from "antd"
 import OverRate from "../OverallRating"
 import Rating from "../Rating"
 import W2w from "../W2w"
@@ -7,21 +7,22 @@ import W2w from "../W2w"
 const ReviewBox = props => {
 
     return (
-    <Row 
-    justify="end">
-        <Card style={{width: 400, backgroundColor: '#c0bdd9'}}
+    <Row justify="end">
+        <Card style={{width: 400, backgroundColor: '#363636'}}
         cover={
             <img
-            alt="example"
-            src="https://images7.alphacoders.com/807/thumb-1920-807296.jpg"
+            height={200}
+            src={props.banner}
             />
         }
         >
-            <Space align="center" direction="vertical" size="middle">
+            <Row justify="center">
+                <Space direction="vertical" align="center">
                         <Rating />
                         <OverRate rate={props.rate} rateIMDB={props.rateIMDB}/>
-                        <W2w />
+                        <W2w plat_data={props.plat_data} />
                 </Space>
+                </Row>
         </Card>
         </Row>
     )
