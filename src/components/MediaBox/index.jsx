@@ -12,18 +12,21 @@ const MediaBox = (props = [])  => {
                         <Carousel src={props?.src} autoplay dotPosition={'left'}>
                             <div>
                                 <Image
+                                alt='Image1'
                                 src={props?.src?.[0]}
                                 >
                                 </Image>
                             </div>
                             <div>
                                 <Image
+                                alt='Image2'
                                 src={props?.src?.[1]}
                                 >
                                 </Image>
                             </div>
                             <div>
                                 <Image
+                                alt='Image3'
                                 src={props?.src?.[2]}
                                 >
                                 </Image>

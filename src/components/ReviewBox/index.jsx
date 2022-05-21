@@ -1,4 +1,4 @@
-import { Row, Card, Space } from "antd"
+import { Row, Card, Space, Image } from "antd"
 import OverRate from "../OverallRating"
 import Rating from "../Rating"
 import W2w from "../W2w"
@@ -10,7 +10,8 @@ const ReviewBox = props => {
     <Row justify="end">
         <Card style={{width: 400, backgroundColor: '#363636'}}
         cover={
-            <img
+            <Image
+            alt='Banner'
             height={200}
             src={props.banner}
             />

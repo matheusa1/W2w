@@ -31,17 +31,17 @@ const FilmeDetailsPage = props => {
   let base_url = "http://localhost:1337"
   const  getFullUrl = path => `${base_url}${path}`
   
-  let titulo = medias?.attributes.title;
-  let desc = medias?.attributes.description;
-  let posterLink = medias?.attributes?.poster?.data?.map(item => getFullUrl(item.attributes?.formats.medium.url));
-  let trailerLink = medias?.attributes.link;
+  let titulo = medias?.attributes?.title;
+  let desc = medias?.attributes?.description;
+  let posterLink = medias?.attributes?.poster?.data?.map(item => getFullUrl(item?.attributes?.formats?.medium?.url));
+  let trailerLink = medias?.attributes?.link;
   let rate = 9.2; //Tem que fazer os bagulho lá tá ligado? Soma das rating/quantidade de rating <--
   let rateIMDB = 8.0;
-  let srcPics = medias?.attributes?.galery?.data?.map(item => getFullUrl(item.attributes?.formats.medium.url));
-  let releaseDate = medias?.attributes.releaseDate;
-  let banner = getFullUrl(medias?.attributes?.banner?.data.attributes?.url);
+  let srcPics = medias?.attributes?.galery?.data?.map(item => getFullUrl(item?.attributes?.formats?.large?.url));
+  let releaseDate = medias?.attributes?.releaseDate;
+  let banner = getFullUrl(medias?.attributes?.banner?.data?.attributes?.url);
   let age = medias?.attributes?.minimumAge;
-  let plat_data = logo?.attributes.platforms.data.map(item => item.attributes);
+  let plat_data = logo?.attributes?.platforms?.data?.map(item => item?.attributes);
 
 
 
@@ -54,17 +54,16 @@ const FilmeDetailsPage = props => {
             </Space>
       </Col>
 
-      <Col xxl={8} xl={12} lg={12}>
+      <Col xxl={8} xl={12} lg={24}>
               <Title italic level={2}>{titulo} - {releaseDate}</Title>
               <Text italic style={{fontSize: 20}}>{desc}</Text>
               <Divider style={{ borderWidth: 3 }}/> 
               <MediaBox src={srcPics} trailerLink={trailerLink}/>
         </Col>
 
-        <Col xxl={8} xl={24} lg={24}>
+        <Col xxl={8} xl={24} lg={12}>
             <ReviewBox plat_data={plat_data} banner={banner} rate={rate} rateIMDB={rateIMDB}/>
         </Col>
-        
     </Row>
   )
 }
