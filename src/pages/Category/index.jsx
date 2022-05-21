@@ -1,16 +1,56 @@
-import { Button, Row, Col } from "antd";
+import { Button, Row, Col, Divider, Input } from "antd";
 import ResultsCards from "./components/ResultsCards";
-import Data from "../../components/Data/dados_para_teste.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Title } from "../../components/Title";
-import { Divider } from 'antd';
+import Axios from "axios";
 
+const { Search } = Input;
+const onSearch = (value) => console.log(value);
+
+let value = 0;
 const CategoryPage = () => {
-  const [value, setValue] = useState(0);
+  const [Data, setData] = useState();
+  const [inputText, setInputText] = useState("");
+
+  let categoryId;
+
+  const setCategoryId = () => {
+    if (value === 1) {
+      categoryId = 7;
+    }
+    if (value === 2) {
+      categoryId = 6;
+    }
+    if (value === 3) {
+      categoryId = 5;
+    }
+  };
+
+  const requestData = async () => {
+    const axios = Axios;
+    setCategoryId();
+    const response = await axios.get(
+      `http://localhost:1337/api/${
+        value === 0
+          ? "platforms?populate=%2A"
+          : `categories/${categoryId}?populate=media.banner`
+      }`
+    );
+    setData(response.data.data);
+  };
+
+  useEffect(() => {
+    requestData();
+  }, []);
+
+  const ActionButton = (num) => {
+    value = num;
+    requestData();
+  };
 
   return (
     <>
-      <Title>CATEGORIAS</Title>
+      <Title>PESQUISAR</Title>
 
       <Row justify="space-evenly">
         <Col span={3}>
@@ -18,21 +58,23 @@ const CategoryPage = () => {
             type="primary"
             shape="round"
             size="large"
-            style={value === 0 ? {
-              width: "100%",
-              height: "3rem",
-              minWidth: "120px",
-              backgroundColor: "#002a52",
-              border: "2px solid #d0d7de",
-            } : {
-              width: "100%",
-              height: "3rem",
-              minWidth: "120px",
-              backgroundColor: "#004381",
-            }}
-            onClick={() => {
-              setValue(0);
-            }}
+            style={
+              value === 0
+                ? {
+                    width: "100%",
+                    height: "3rem",
+                    minWidth: "120px",
+                    backgroundColor: "#002a52",
+                    border: "2px solid #d0d7de",
+                  }
+                : {
+                    width: "100%",
+                    height: "3rem",
+                    minWidth: "120px",
+                    backgroundColor: "#004381",
+                  }
+            }
+            onClick={() => ActionButton(0)}
           >
             Plataformas
           </Button>
@@ -42,21 +84,23 @@ const CategoryPage = () => {
             type="primary"
             shape="round"
             size="large"
-            style={value === 1 ? {
-              width: "100%",
-              height: "3rem",
-              minWidth: "120px",
-              backgroundColor: "#002a52",
-              border: "2px solid #d0d7de",
-            } : {
-              width: "100%",
-              height: "3rem",
-              minWidth: "120px",
-              backgroundColor: "#004381",
-            }}
-            onClick={() => {
-              setValue(1);
-            }}
+            style={
+              value === 1
+                ? {
+                    width: "100%",
+                    height: "3rem",
+                    minWidth: "120px",
+                    backgroundColor: "#002a52",
+                    border: "2px solid #d0d7de",
+                  }
+                : {
+                    width: "100%",
+                    height: "3rem",
+                    minWidth: "120px",
+                    backgroundColor: "#004381",
+                  }
+            }
+            onClick={() => ActionButton(1)}
           >
             Filmes
           </Button>
@@ -66,48 +110,66 @@ const CategoryPage = () => {
             type="primary"
             shape="round"
             size="large"
-            style={value === 2 ? {
-              width: "100%",
-              height: "3rem",
-              minWidth: "120px",
-              backgroundColor: "#002a52",
-              border: "2px solid #d0d7de",
-            } : {
-              width: "100%",
-              height: "3rem",
-              minWidth: "120px",
-              backgroundColor: "#004381",
-            }}
-            onClick={() => {
-              setValue(2);
-            }}
+            style={
+              value === 2
+                ? {
+                    width: "100%",
+                    height: "3rem",
+                    minWidth: "120px",
+                    backgroundColor: "#002a52",
+                    border: "2px solid #d0d7de",
+                  }
+                : {
+                    width: "100%",
+                    height: "3rem",
+                    minWidth: "120px",
+                    backgroundColor: "#004381",
+                  }
+            }
+            onClick={() => ActionButton(2)}
           >
             Séries
           </Button>
         </Col>
         <Col span={3}>
-          <Button 
+          <Button
             type="primary"
             shape="round"
             size="large"
-            style={value === 3 ? {
-              width: "100%",
-              height: "3rem",
-              minWidth: "120px",
-              backgroundColor: "#002a52",
-              border: "2px solid #d0d7de",
-            } : {
-              width: "100%",
-              height: "3rem",
-              minWidth: "120px",
-              backgroundColor: "#004381",
-            }}
-            onClick={() => {
-              setValue(3);
-            }}
+            style={
+              value === 3
+                ? {
+                    width: "100%",
+                    height: "3rem",
+                    minWidth: "120px",
+                    backgroundColor: "#002a52",
+                    border: "2px solid #d0d7de",
+                  }
+                : {
+                    width: "100%",
+                    height: "3rem",
+                    minWidth: "120px",
+                    backgroundColor: "#004381",
+                  }
+            }
+            onClick={() => ActionButton(3)}
           >
             Animes
           </Button>
+        </Col>
+      </Row>
+
+      <Row justify="center">
+        <Col span={12}>
+          <Search
+            size="large"
+            style={{ marginTop: "20px" }}
+            placeholder="Filme, série, anime, plataforma"
+            onSearch={(e) => {
+              setInputText(e);
+            }}
+            enterButton
+          />
         </Col>
       </Row>
 
@@ -115,7 +177,15 @@ const CategoryPage = () => {
 
       <Row justify="center">
         <Col span={24}>
-          <ResultsCards value={value} category={Data.Categorias[value]} />
+          {Data === undefined ? (
+            console.log("err")
+          ) : (
+            <ResultsCards
+              value={value}
+              category={Data}
+              searchText={inputText}
+            />
+          )}
         </Col>
       </Row>
     </>
