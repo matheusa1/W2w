@@ -35,7 +35,7 @@ const ResultsCards = ({ value, category, searchText }) => {
                         src={
                           value === 0
                             ? Content?.attributes.logo.data.attributes.name
-                            : ""
+                            : Content?.attributes.banner.data.attributes.name
                         }
                       />
                     }

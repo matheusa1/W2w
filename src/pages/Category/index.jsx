@@ -10,7 +10,7 @@ const onSearch = (value) => console.log(value);
 let value = 0;
 const CategoryPage = () => {
   const [Data, setData] = useState();
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
 
   let categoryId;
 
@@ -31,8 +31,10 @@ const CategoryPage = () => {
     setCategoryId();
     const response = await axios.get(
       `http://localhost:1337/api/${
-        value === 0 ? "platforms" : `categories/${categoryId}`
-      }?populate=%2A`
+        value === 0
+          ? "platforms?populate=%2A"
+          : `categories/${categoryId}?populate=media.banner`
+      }`
     );
     setData(response.data.data);
   };
@@ -178,7 +180,11 @@ const CategoryPage = () => {
           {Data === undefined ? (
             console.log("err")
           ) : (
-            <ResultsCards value={value} category={Data} searchText={inputText} />
+            <ResultsCards
+              value={value}
+              category={Data}
+              searchText={inputText}
+            />
           )}
         </Col>
       </Row>
