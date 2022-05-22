@@ -4,11 +4,10 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import FilmeDetails from "../pages/FilmesDetails";
 import Sobre from '../pages/Sobre'
-import SearchPage from "../pages/Busca";
-import CategoryPage from "../pages/Category";
-
+import SearchPage from "../pages/Search";
 import EditProfile from "../pages/EditProfile";
 import PerfilPage from "../pages/Perfil";
+import PlatformPage from "../pages/Platform";
 
 const AppRoutes = () => (
   <Routes>
@@ -17,10 +16,10 @@ const AppRoutes = () => (
     <Route path="/register" element={<Cadastro />} />
     <Route path="/filme/:id" element={<FilmeDetails />} />
     <Route path="/search" element={<SearchPage />} />
-    <Route path="/category" element={<CategoryPage />} />
     <Route path="/profile" element={<PerfilPage />} />
     <Route path="/profile/edit" element={<EditProfile />} />
     <Route path="/about" element={<Sobre />}/>
+    <Route path="/platform/:id" element={<PlatformPage />} />
   </Routes>
 );
 

@@ -2,14 +2,13 @@ import { Card, Col, Row } from "antd";
 import { NavLink } from "react-router-dom";
 
 const ResultsCards = ({ value, category, searchText }) => {
-  const route = value === 0 ? "platforms" : "filme";
+  const route = value === 0 ? "platform" : "filme";
   const itens = value === 0 ? category : category?.attributes.media.data;
-  console.log(itens);
 
   return (
     <>
       <Row gutter={32} justify="center">
-        {itens.map((Content) => {
+        {itens.map((Content, key) => {
           const itemName =
             value === 0
               ? Content.attributes.name.toLowerCase()
@@ -22,6 +21,7 @@ const ResultsCards = ({ value, category, searchText }) => {
               <NavLink to={`/${route}/${Content?.id}`}>
                 <Col>
                   <Card
+                    key={key}
                     hoverable
                     style={value === 0 ? { width: 240 } : { width: 290 }}
                     cover={
@@ -31,7 +31,7 @@ const ResultsCards = ({ value, category, searchText }) => {
                             ? { width: "240px", height: "240px" }
                             : { width: "290px", height: "180px" }
                         }
-                        alt={`Logo ${Content?.attributes.logo}`}
+                        alt={`Logo ${Content.attributes.logo}`}
                         src={
                           value === 0
                             ? Content?.attributes.logo.data.attributes.name
@@ -52,6 +52,17 @@ const ResultsCards = ({ value, category, searchText }) => {
                 </Col>
               </NavLink>
             );
+          } else {
+            if (key === 1) {
+              return (
+                <>
+                  <img
+                    style={{ width: "100px", height: "100px" }}
+                    src="https://imagepng.org/wp-content/uploads/2017/10/facebook-triste-emoji-icone-1.png"
+                  />
+                </>
+              );
+            }
           }
         })}
       </Row>

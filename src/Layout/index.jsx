@@ -16,7 +16,7 @@ import { useState } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-let isSingedIn = true;
+let isSingedIn = false;
 
 const Applayout = ({ children }) => {
   const [showMenu, setShowMenu] = useState(true);
@@ -66,9 +66,6 @@ const Applayout = ({ children }) => {
           </Menu.Item>
           <Menu.Item key="5" icon={<SearchOutlined />}>
             <NavLink to="/search">Busca</NavLink>
-          </Menu.Item>
-          <Menu.Item key="6" icon={<AppstoreOutlined />}>
-            <NavLink to="/category">Categoria</NavLink>
           </Menu.Item>
         </Menu>
       </Sider>
