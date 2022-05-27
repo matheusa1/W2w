@@ -3,9 +3,9 @@ import { useParams } from "react-router";
 import Axios from "axios";
 import { Title } from "../../components/Title";
 import { Row, Divider } from 'antd';
-import CardResults from './components/CardResults';
+import CardResults from '../../components/CardResults';
 import Loading from '../../components/Loading';
-import * as S from "./components/styles";
+import * as S from "./styles";
 
 const CategoryPage = () => {
   const [ Data, setData ] = useState();
@@ -19,7 +19,6 @@ const CategoryPage = () => {
     const responseLogo = await axios.get(`http://localhost:1337/api/platforms/${id}?populate=*`);
     setData(response?.data?.data?.attributes?.media?.data);
     setLogo(responseLogo?.data?.data);
-    console.log(response?.data?.data?.attributes?.media?.data);
   }
 
   useEffect(() => {
@@ -36,7 +35,7 @@ const CategoryPage = () => {
         <Divider />
       </Row>
       <Row justify="center">
-        {Data === undefined ? <Loading/> : <CardResults data={Data}/> }
+        {Data === undefined ? <Loading/> : <CardResults data={Data} searchText=""/> }
       </Row>
     </>
   );

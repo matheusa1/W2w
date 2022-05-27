@@ -1,5 +1,6 @@
 import { Button, Row, Col, Divider, Input } from "antd";
-import ResultsCards from "./components/ResultsCards";
+import CardResultsPlatforms from "./components/CardResultsPlatforms";
+import CardResults from "../../components/CardResults";
 import { useState, useEffect } from "react";
 import { Title } from "../../components/Title";
 import Loading from "../../components/Loading";
@@ -34,7 +35,7 @@ const SearchPage = () => {
           : `categories/${categoryId}?populate=media.banner`
       }`
     );
-    setData(response.data.data);
+    setData(response?.data?.data);
   };
 
   useEffect(() => {
@@ -48,9 +49,10 @@ const SearchPage = () => {
 
   return (
     <>
-      <Title>PESQUISAR</Title>
-
-      <Row justify="space-evenly">
+      <Row>
+        <Title>PESQUISAR</Title>
+      </Row>
+      <Row justify="space-around">
         <Col span={3}>
           <Button
             type="primary"
@@ -160,6 +162,7 @@ const SearchPage = () => {
       <Row justify="center">
         <Col span={12}>
           <Input
+            allowClear
             size="large"
             style={{ marginTop: "20px" }}
             placeholder="Filme, série, anime, plataforma"
@@ -173,17 +176,16 @@ const SearchPage = () => {
       <Divider />
 
       <Row justify="center">
-        <Col span={24}>
-          {Data === undefined ? (
-            <Loading />
-          ) : (
-            <ResultsCards
-              value={value}
-              category={Data}
-              searchText={inputText}
-            />
-          )}
-        </Col>
+        {Data === undefined ? (
+          <Loading />
+        ) : value === 0 ? (
+          <CardResultsPlatforms data={Data} searchText={inputText} />
+        ) : (
+          <CardResults
+            data={Data?.attributes?.media?.data}
+            searchText={inputText}
+          />
+        )}
       </Row>
     </>
   );
