@@ -15,6 +15,19 @@ const RegisterForm = () => {
       scrollToFirstError
     >
       <Form.Item
+        name="nickname"
+        tooltip="Como gostaria de ser chamado?"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, informe seu nome de usuário',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Input placeholder='Nome'/>
+      </Form.Item>
+      <Form.Item
         name="email"
         rules={[
           {
@@ -64,20 +77,6 @@ const RegisterForm = () => {
         ]}
       >
         <Input.Password placeholder='Confirmar senha'/>
-      </Form.Item>
-
-      <Form.Item
-        name="nickname"
-        tooltip="Como gostaria de ser chamado?"
-        rules={[
-          {
-            required: true,
-            message: 'Por favor, informe seu nome',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input placeholder='Nome'/>
       </Form.Item>
 
       <Form.Item
