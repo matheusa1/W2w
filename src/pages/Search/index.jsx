@@ -8,6 +8,7 @@ import Axios from "axios";
 
 let value = 0;
 let pagination = 1;
+let itensPorPaginas = 15;
 const SearchPage = () => {
   const [Data, setData] = useState();
   const [inputText, setInputText] = useState("");
@@ -39,24 +40,21 @@ const SearchPage = () => {
       response = await axios.get(
         `http://localhost:1337/api/${
           value === 0
-            ? `platforms?populate=%2A&pagination[start]=${
-                (pagination - 1) * 15
-              }&pagination[limit]=15`
-            : `categories/${categoryId}?populate=media.banner&pagination[start]=${
-                (pagination - 1) * 15
-              }&pagination[limit]=15`
+            ? `platforms?populate=%2A&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+            : `medias?populate=%2A&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
         }`
       );
     } else {
       response = await axios.get(
         `http://localhost:1337/api/${
           value === 0
-            ? `platforms?populate=%2A&filters[name][$containsi]=${inputText}`
-            : `categories/${categoryId}?populate=media.banner&filters[name][$containsi]=${inputText}`
+            ? `platforms?populate=%2A&filters[name][$containsi]=${inputText}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+            : `medias?populate=%2A&filters[title][$containsi]=${inputText}&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
         }`
       );
     }
-    setData(response?.data?.data);
+    setData(response?.data);
+    console.log(response?.data);
   };
 
   useEffect(() => {
@@ -201,19 +199,23 @@ const SearchPage = () => {
         {Data === undefined ? (
           <Loading />
         ) : value === 0 ? (
-          <CardResultsPlatforms data={Data}/>
+          <CardResultsPlatforms data={Data?.data} />
         ) : (
-          <CardResults data={Data?.attributes?.media?.data} />
+          <CardResults data={Data?.data} />
         )}
       </Row>
 
+      <Divider />
+
       <Row justify="center">
-        <Pagination
-          current={pagination}
-          onChange={onChange}
-          total={50}
-          size="small"
-        />
+        {Data?.meta?.pagination?.total > itensPorPaginas ? (
+          <Pagination
+            current={pagination}
+            onChange={onChange}
+            total={(Data?.meta?.pagination?.total / itensPorPaginas) * 10}
+            size="small"
+          />
+        ) : null}
       </Row>
     </>
   );
