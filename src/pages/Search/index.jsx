@@ -59,7 +59,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     requestData();
-  }, [inputText]);
+  }, []);
 
   const ActionButton = (num) => {
     value = num;
@@ -186,7 +186,7 @@ const SearchPage = () => {
             size="large"
             style={{ marginTop: "20px" }}
             placeholder="Filme, série, anime, plataforma"
-            onChange={(e) => {
+            onPressEnter={(e) => {
               setInputText(e.target.value);
             }}
           />
