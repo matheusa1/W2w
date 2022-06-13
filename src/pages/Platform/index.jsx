@@ -36,6 +36,7 @@ const CategoryPage = () => {
   };
 
   useEffect(() => {
+    pagination = 1;
     requestData();
   }, []);
 
