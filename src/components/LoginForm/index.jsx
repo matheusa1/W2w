@@ -1,10 +1,28 @@
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { useAuth } from '../../hooks/auth';
+import getErrorMessages from '../../helpers/getErrorMessage';
+import axios from 'axios';
 
 const LoginForm = () => {
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-      };
+  const { signIn } = useAuth();
+    const onFinish = async (values) => {
+      
+      try {
+        await signIn({
+          email:values?.username,
+          password: values?.password
+        })
+
+        
+      } catch (ex) {
+        const errorMsg = getErrorMessages(ex)
+        errorMsg?.forEach(element => { message.error(element) });
+      }
+
+      const {data} = await axios.get('http://localhost:3333/users/me')
+      console.log({data});
+    };
     
       return (
         <Form
