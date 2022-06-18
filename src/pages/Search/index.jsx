@@ -4,7 +4,9 @@ import CardResults from "../../components/CardResults";
 import { useState, useEffect } from "react";
 import { Title } from "../../components/Title";
 import Loading from "../../components/Loading";
+import { DebounceInput } from "react-debounce-input";
 import Axios from "axios";
+import InputAllowClear from "./components/InputAllowClear";
 
 let value = 0;
 let pagination = 1;
@@ -59,7 +61,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     requestData();
-  }, []);
+  }, [inputText]);
 
   const ActionButton = (num) => {
     value = num;
@@ -181,14 +183,15 @@ const SearchPage = () => {
 
       <Row justify="center">
         <Col span={12}>
-          <Input
-            allowClear
-            size="large"
-            style={{ marginTop: "20px" }}
+          <DebounceInput
+            debounceTimeout={500}
             placeholder="Filme, série, anime, plataforma"
-            onPressEnter={(e) => {
-              setInputText(e.target.value);
-            }}
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyUp={() => requestData()}
+            // element={InputAllowClear}
+            element={Input}
+            style={{ marginTop: "20px" }}
           />
         </Col>
       </Row>
