@@ -13,12 +13,8 @@ const ProfileSettings = props => {
         <br />
         <Input.Group size="large">
             <Row gutter={8}>
-                <Col span={12}>
+                <Col span={24}>
                     <Text style={{fontSize: 24}} strong>Nome</Text>
-                    <Input defaultValue="" />
-                </Col>
-                <Col span={12}>
-                    <Text style={{fontSize: 24}} strong>Sobrenome</Text>
                     <Input defaultValue="" />
                 </Col>
             </Row>
