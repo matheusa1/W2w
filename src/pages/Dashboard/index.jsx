@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Title } from "../../components/Title";
 import * as S from "./styles";
-import Data from "../../components/Data/dados_para_teste.json";
 import Axios from "axios";
 
 const { Search } = Input;
@@ -17,15 +16,15 @@ const contentStyle = {
   background: "#364d79",
 };
 
-const filmesDestaques = Data.Categorias;
-
 const DashboardPage = () => {
   const [Data, setData] = useState();
 
-  const requestData = () => {
+  const requestData = async () => {
     const axios = Axios;
-    const response = axios.get("http://localhost:1337/api/medias");
-    setData(response);
+    const response = await axios.get(
+      "http://localhost:1337/api/medias?populate=%2A&pagination[start]=0&pagination[limit]=4"
+    );
+    setData(response?.data?.data);
     console.log(Data);
   };
 
@@ -54,23 +53,20 @@ const DashboardPage = () => {
       <S.MainText>DESTAQUES</S.MainText>
       <Row justify="center">
         <Col span={12}>
-          <Carousel autoplay dotPosition={"top"}>
-            {filmesDestaques[2].Subcategorias.map((filme) => {
-              if (filme.destaque) {
-                return (
-                  <NavLink to={`/filme/${filme.Id}`}>
-                    <div key={filme.Id}>
-                      <img
-                        style={contentStyle}
-                        src={filme.Imagem}
-                        alt={filme.Titulo}
-                      />
-                    </div>
-                  </NavLink>
-                );
-              } else {
-                return null;
-              }
+          <Carousel arrow autoplay dotPosition={"top"}>
+            {Data?.map((item, index) => {
+              return (
+                <NavLink key={item?.id} to={`/filme/${item?.id}`}>
+                  <div>
+                    <img
+                      style={contentStyle}
+                      src={item?.attributes?.banner?.data?.attributes?.name}
+                      alt="banner"
+                    />
+                  </div>
+                  <p>{index}</p>
+                </NavLink>
+              );
             })}
           </Carousel>
         </Col>
