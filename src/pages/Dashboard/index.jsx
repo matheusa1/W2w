@@ -1,8 +1,10 @@
 import { Input, Carousel, Row, Col } from "antd";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Title } from "../../components/Title";
 import * as S from "./styles";
 import Data from "../../components/Data/dados_para_teste.json";
+import Axios from "axios";
 
 const { Search } = Input;
 
@@ -18,6 +20,19 @@ const contentStyle = {
 const filmesDestaques = Data.Categorias;
 
 const DashboardPage = () => {
+  const [Data, setData] = useState();
+
+  const requestData = () => {
+    const axios = Axios;
+    const response = axios.get("http://localhost:1337/api/medias");
+    setData(response);
+    console.log(Data);
+  };
+
+  useEffect(() => {
+    requestData();
+  }, []);
+
   const onSearch = (value) => {
     console.log(value);
   };
