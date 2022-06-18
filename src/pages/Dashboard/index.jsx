@@ -43,8 +43,8 @@ const DashboardPage = () => {
             {filmesDestaques[2].Subcategorias.map((filme) => {
               if (filme.destaque) {
                 return (
-                  <NavLink to={`/filme/${filme.Id}`}>
-                    <div key={filme.Id}>
+                  <NavLink to={`/filme/${filme.Id}`} key={filme.Id}>
+                    <div>
                       <img
                         style={contentStyle}
                         src={filme.Imagem}
