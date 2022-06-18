@@ -20,10 +20,6 @@ const EditAvatar = props => {
             <Row>
                 <Button shape="round" size="large" block type="primary">Alterar Avatar</Button>
             </Row>
-            <br/>
-            <Row>
-                <Button danger shape="round" size="large" block >Remover</Button>
-            </Row>
         </Card>
       </>
   );
