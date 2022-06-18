@@ -2,8 +2,10 @@ import { Col, Row, Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import * as S from "../../components/Title";
 import Axios from "axios";
+import { useAuth } from "../../hooks/auth"
 
 const LoginPage = () => {
+  const auth = useAuth()
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const axios = Axios;
@@ -16,6 +18,10 @@ const LoginPage = () => {
     .catch(function (error) {
       console.log(error);
     });
+    auth.signIn({
+      email: values.email,
+      password: values.password,
+    })
   };
 
   return (
