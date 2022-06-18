@@ -1,17 +1,26 @@
-import { Button, Row, Col, Divider, Input } from "antd";
+import { Button, Row, Col, Divider, Input, Pagination } from "antd";
 import CardResultsPlatforms from "./components/CardResultsPlatforms";
 import CardResults from "../../components/CardResults";
 import { useState, useEffect } from "react";
 import { Title } from "../../components/Title";
 import Loading from "../../components/Loading";
+import { DebounceInput } from "react-debounce-input";
 import Axios from "axios";
+import InputAllowClear from "./components/InputAllowClear";
 
 let value = 0;
+let pagination = 1;
+let itensPorPaginas = 15;
 const SearchPage = () => {
   const [Data, setData] = useState();
   const [inputText, setInputText] = useState("");
 
   let categoryId;
+
+  const onChange = (page) => {
+    pagination = page;
+    requestData();
+  };
 
   const setCategoryId = () => {
     if (value === 1) {
@@ -28,22 +37,35 @@ const SearchPage = () => {
   const requestData = async () => {
     const axios = Axios;
     setCategoryId();
-    const response = await axios.get(
-      `http://localhost:1337/api/${
-        value === 0
-          ? "platforms?populate=%2A"
-          : `categories/${categoryId}?populate=media.banner`
-      }`
-    );
-    setData(response?.data?.data);
+    let response;
+    if (inputText === "" || inputText === undefined) {
+      response = await axios.get(
+        `http://localhost:1337/api/${
+          value === 0
+            ? `platforms?populate=%2A&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+            : `medias?populate=%2A&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+        }`
+      );
+    } else {
+      response = await axios.get(
+        `http://localhost:1337/api/${
+          value === 0
+            ? `platforms?populate=%2A&filters[name][$containsi]=${inputText}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+            : `medias?populate=%2A&filters[title][$containsi]=${inputText}&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+        }`
+      );
+    }
+    setData(response?.data);
+    console.log(response?.data);
   };
 
   useEffect(() => {
     requestData();
-  }, []);
+  }, [inputText]);
 
   const ActionButton = (num) => {
     value = num;
+    pagination = 0;
     requestData();
   };
 
@@ -161,14 +183,15 @@ const SearchPage = () => {
 
       <Row justify="center">
         <Col span={12}>
-          <Input
-            allowClear
-            size="large"
-            style={{ marginTop: "20px" }}
+          <DebounceInput
+            debounceTimeout={500}
             placeholder="Filme, série, anime, plataforma"
-            onChange={(e) => {
-              setInputText(e.target.value);
-            }}
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyUp={() => requestData()}
+            // element={InputAllowClear}
+            element={Input}
+            style={{ marginTop: "20px" }}
           />
         </Col>
       </Row>
@@ -179,13 +202,23 @@ const SearchPage = () => {
         {Data === undefined ? (
           <Loading />
         ) : value === 0 ? (
-          <CardResultsPlatforms data={Data} searchText={inputText} />
+          <CardResultsPlatforms data={Data?.data} />
         ) : (
-          <CardResults
-            data={Data?.attributes?.media?.data}
-            searchText={inputText}
-          />
+          <CardResults data={Data?.data} />
         )}
+      </Row>
+
+      <Divider />
+
+      <Row justify="center">
+        {Data?.meta?.pagination?.total > itensPorPaginas ? (
+          <Pagination
+            current={pagination}
+            onChange={onChange}
+            total={(Data?.meta?.pagination?.total / itensPorPaginas) * 10}
+            size="small"
+          />
+        ) : null}
       </Row>
     </>
   );
