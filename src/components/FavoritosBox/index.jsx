@@ -8,28 +8,15 @@ const FavoritosBox = props => {
         console.log(e)
         message.success("Removido com sucesso")
     }
-    let a = 2;
 
     return (
         <>
             <Row gutter={16}>
-                <Col >
+                <Col>
                     <FilmCardFav Poster={props.Poster} Title={props.Title}/>
                     <Popconfirm title="Deseja Removelo da lista?" okText="Sim" cancelText="Nao" onConfirm={confirm}>
                         <Button type="text" danger><DeleteOutlined /></Button>
                     </Popconfirm>
-                </Col>
-                <Col >
-                    <FilmCardFav Poster={props.Poster} Title={props.Title}/>
-                    <Button type="text" danger><DeleteOutlined /></Button>
-                </Col>
-                <Col >
-                    <FilmCardFav Poster={props.Poster} Title={props.Title}/>
-                    <Button type="text" danger><DeleteOutlined /></Button>
-                </Col>
-                <Col >
-                    <FilmCardFav Poster={props.Poster} Title={props.Title}/>
-                    <Button type="text" danger><DeleteOutlined /></Button>
                 </Col>
             </Row>
         </>
