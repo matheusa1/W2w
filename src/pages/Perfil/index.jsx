@@ -3,8 +3,11 @@ import FavoritosBox from "../../components/FavoritosBox";
 import TextBox from "../../components/TextBox";
 import TotalWatched from "../../components/TotalWatched";
 import WatchedBox from "../../components/WatchedBox";
+import { useAuth } from "../../hooks/auth"
 
 const ProfilePage = () => {
+  const auth = useAuth()
+  console.log(auth)
  
   let Watched = 10;
   let Pic = 'https://super.abril.com.br/wp-content/uploads/2018/05/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png'
@@ -27,26 +30,16 @@ const ProfilePage = () => {
         </Row>
       <Divider/>
       <div>
-        <Col >
-          <h2>Favoritos</h2>
-        </Col>
-        <br/>
-        <Col>
-          <FavoritosBox Poster={Poster} Title={Title}/>
-        </Col>
+        <Row justify="center">
+          <Col >
+            <h2>Minha Lista</h2>
+          </Col>
+        </Row>
+          <br/>
+          <Col>
+            <FavoritosBox Poster={Poster} Title={Title}/>
+          </Col>
       </div> 
-    </Row>
-    <br/>
-    <Row justify="center">
-        <div>
-            <Col >
-                <h2>Assistidos recentemente</h2>
-            </Col>
-            <br/>
-            <Col>
-                <WatchedBox Poster={Poster} Title={Title} Rate={Rate}/>
-            </Col>
-        </div>
     </Row>
   </>
   )
