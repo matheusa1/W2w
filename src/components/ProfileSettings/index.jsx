@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks/auth"
 
 
 const ProfileSettings = props => {
-  const {Text, Title} = Typography;
+  const {Text} = Typography;
   const { TextArea } = Input;
   const { token } = useAuth()
   const [name, setName] = useState();

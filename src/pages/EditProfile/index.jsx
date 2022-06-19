@@ -5,8 +5,6 @@ import ProfileSettings from "../../components/ProfileSettings";
 
 const EditProfile = () => {
   const {Text, Title} = Typography;
-  let profName = "Serggio22";
-  let email = "Serggio22@gmail.com";
 
   return (
     <>
@@ -18,7 +16,7 @@ const EditProfile = () => {
       <Divider />
       <Row gutter={8}>
             <Col xxl={{span: 14, push: 2}} xl={{span: 10, push: 2}} lg={{span: 10, push: 1}} md={{span: 24, push: 1}} sm={{span: 24}}>
-              <ProfileSettings accName={profName} email={email}/>
+              <ProfileSettings />
             </Col>
             <Col xxl={{span: 10, push: 0, pull: 1}} xl = {{span: 8, push: 4, pull: 0}} lg={{span: 8, push: 4, pull: 0}} md={{span: 24 ,pull: 0}} sm={{span: 24 ,pull: 0}} xs={{span: 24 ,pull: 0}}>
               <EditAvatar />

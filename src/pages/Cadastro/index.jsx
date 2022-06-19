@@ -10,8 +10,7 @@ const CadastroPage = () => {
     const axios = Axios;
     await axios.post("http://localhost:3333/auth/signup", {
       email: values.email,
-      password: values.password,
-      username: values.password,
+      password: values.password
     }).then(function (response) {
       console.log(response);
     })
@@ -31,19 +30,6 @@ const CadastroPage = () => {
             onFinish={onFinish}
             scrollToFirstError
           >
-            <Form.Item
-              name="nickname"
-              tooltip="Como gostaria de ser chamado?"
-              rules={[
-                {
-                  required: true,
-                  message: "Por favor, informe seu nome de usuário",
-                  whitespace: true,
-                },
-              ]}
-            >
-              <Input placeholder="Nome" />
-            </Form.Item>
             <Form.Item
               name="email"
               rules={[
