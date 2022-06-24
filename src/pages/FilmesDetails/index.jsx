@@ -20,6 +20,16 @@ const FilmeDetailsPage = (props) => {
   const { token } = useAuth();
   const { id } = params;
 
+  const isFavorite = async () => {
+    const axios = Axios;
+    try {
+      const response = await axios.get("http://localhost:3333/users/me");
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const addFavorite = async () => {
     const axios = Axios;
 
@@ -40,10 +50,6 @@ const FilmeDetailsPage = (props) => {
     const axios = Axios;
 
     try {
-      // const response = await axios.delete(
-      //   "http://localhost:3333/users/me/removevideo",
-      //   { strapiVideoId: Number(id) }
-      // );
       const response = await axios.delete(
         "http://localhost:3333/users/me/removevideo",
         {
@@ -76,6 +82,7 @@ const FilmeDetailsPage = (props) => {
 
     requestMedia();
     axios.defaults.headers.authorization = `Bearer ${token}`;
+    isFavorite();
   }, []);
 
   let base_url = "http://localhost:1337";
