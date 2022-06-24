@@ -24,7 +24,11 @@ const FilmeDetailsPage = (props) => {
     const axios = Axios;
     try {
       const response = await axios.get("http://localhost:3333/users/me");
-      console.log(response);
+      response?.data?.myList.forEach((data) => {
+        if (data.strapiId === Number(id)) {
+          setFavorito(true);
+        }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +44,6 @@ const FilmeDetailsPage = (props) => {
       );
 
       setFavorito(!favorito);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +63,6 @@ const FilmeDetailsPage = (props) => {
       );
 
       setFavorito(!favorito);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
