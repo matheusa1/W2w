@@ -1,4 +1,4 @@
-import { Button, Row, Col, Divider, Input } from "antd";
+import { Button, Row, Col, Divider, Input, Pagination } from "antd";
 import CardResultsPlatforms from "./components/CardResultsPlatforms";
 import CardResults from "../../components/CardResults";
 import { useState, useEffect } from "react";
@@ -7,11 +7,17 @@ import Loading from "../../components/Loading";
 import Axios from "axios";
 
 let value = 0;
+let pagination = 1;
 const SearchPage = () => {
   const [Data, setData] = useState();
   const [inputText, setInputText] = useState("");
 
   let categoryId;
+
+  const onChange = (page) => {
+    pagination = page;
+    requestData();
+  };
 
   const setCategoryId = () => {
     if (value === 1) {
@@ -28,22 +34,38 @@ const SearchPage = () => {
   const requestData = async () => {
     const axios = Axios;
     setCategoryId();
-    const response = await axios.get(
-      `http://localhost:1337/api/${
-        value === 0
-          ? "platforms?populate=%2A"
-          : `categories/${categoryId}?populate=media.banner`
-      }`
-    );
+    let response;
+    if (inputText === "" || inputText === undefined) {
+      response = await axios.get(
+        `http://localhost:1337/api/${
+          value === 0
+            ? `platforms?populate=%2A&pagination[start]=${
+                (pagination - 1) * 15
+              }&pagination[limit]=15`
+            : `categories/${categoryId}?populate=media.banner&pagination[start]=${
+                (pagination - 1) * 15
+              }&pagination[limit]=15`
+        }`
+      );
+    } else {
+      response = await axios.get(
+        `http://localhost:1337/api/${
+          value === 0
+            ? `platforms?populate=%2A&filters[name][$containsi]=${inputText}`
+            : `categories/${categoryId}?populate=media.banner&filters[name][$containsi]=${inputText}`
+        }`
+      );
+    }
     setData(response?.data?.data);
   };
 
   useEffect(() => {
     requestData();
-  }, []);
+  }, [inputText]);
 
   const ActionButton = (num) => {
     value = num;
+    pagination = 0;
     requestData();
   };
 
@@ -179,13 +201,19 @@ const SearchPage = () => {
         {Data === undefined ? (
           <Loading />
         ) : value === 0 ? (
-          <CardResultsPlatforms data={Data} searchText={inputText} />
+          <CardResultsPlatforms data={Data}/>
         ) : (
-          <CardResults
-            data={Data?.attributes?.media?.data}
-            searchText={inputText}
-          />
+          <CardResults data={Data?.attributes?.media?.data} />
         )}
+      </Row>
+
+      <Row justify="center">
+        <Pagination
+          current={pagination}
+          onChange={onChange}
+          total={50}
+          size="small"
+        />
       </Row>
     </>
   );

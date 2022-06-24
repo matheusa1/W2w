@@ -53,20 +53,23 @@ const DashboardPage = () => {
       <S.MainText>DESTAQUES</S.MainText>
       <Row justify="center">
         <Col span={12}>
-          <Carousel arrow autoplay dotPosition={"top"}>
-            {Data?.map((item, index) => {
-              return (
-                <NavLink key={item?.id} to={`/filme/${item?.id}`}>
-                  <div>
-                    <img
-                      style={contentStyle}
-                      src={item?.attributes?.banner?.data?.attributes?.name}
-                      alt="banner"
-                    />
-                  </div>
-                  <p>{index}</p>
-                </NavLink>
-              );
+          <Carousel autoplay dotPosition={"top"}>
+            {filmesDestaques[2].Subcategorias.map((filme) => {
+              if (filme.destaque) {
+                return (
+                  <NavLink to={`/filme/${filme.Id}`} key={filme.Id}>
+                    <div>
+                      <img
+                        style={contentStyle}
+                        src={filme.Imagem}
+                        alt={filme.Titulo}
+                      />
+                    </div>
+                  </NavLink>
+                );
+              } else {
+                return null;
+              }
             })}
           </Carousel>
         </Col>
