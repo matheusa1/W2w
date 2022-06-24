@@ -1,7 +1,7 @@
 import { Row, Col, Divider } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import FavoritosBox from "../../components/FavoritosBox";
+import UserList from "../../components/UserList";
 import TextBox from "../../components/TextBox";
 import TotalWatched from "../../components/TotalWatched";
 import { useAuth } from "../../hooks/auth"
@@ -50,7 +50,7 @@ const ProfilePage = () => {
         </Row>
           <br/>
           <Col>
-            <FavoritosBox Poster={Poster} Title={Title}/>
+            <UserList Poster={Poster} Title={Title}/>
           </Col>
       </div> 
     </Row>

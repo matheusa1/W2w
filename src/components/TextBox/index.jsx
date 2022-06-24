@@ -23,7 +23,7 @@ const TextBox = props => {
                 <br/>
                 <Text style={{fontSize: FontSize}}>{props.Bio}</Text>
                 <br/>
-                <Text style={{fontSize: FontSize}}><PushpinFilled/>{props.From}</Text>
+                <Text style={{fontSize: FontSize}}>{props.From}</Text>
             </Col>
         </Row>
     )
