@@ -42,7 +42,7 @@ const Applayout = ({ children }) => {
         </NavLink>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["5"]}>
           {isSingedIn ? (
-            <Menu.SubMenu title="Perfil" icon={<UserOutlined />}>
+            <Menu.SubMenu key={10} title="Perfil" icon={<UserOutlined />}>
               <Menu.Item key={0} icon={<UserOutlined />}>
                 <NavLink to="/profile">Ver meu perfil</NavLink>
               </Menu.Item>
