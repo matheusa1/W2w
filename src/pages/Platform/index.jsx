@@ -18,6 +18,7 @@ const CategoryPage = () => {
 
   const requestData = async () => {
     const axios = Axios;
+    axios.defaults.headers.authorization = null;
     const responseLogo = await axios.get(
       `http://localhost:1337/api/platforms/${id}?populate=*`
     );

@@ -21,6 +21,8 @@ const DashboardPage = () => {
 
   const requestData = async () => {
     const axios = Axios;
+    axios.defaults.headers.authorization = null;
+
     const response = await axios.get(
       "http://localhost:1337/api/medias?populate=%2A&pagination[start]=0&pagination[limit]=4"
     );

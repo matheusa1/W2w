@@ -22,6 +22,8 @@ const FilmeDetailsPage = (props) => {
 
   const isFavorite = async () => {
     const axios = Axios;
+    axios.defaults.headers.authorization = `Bearer ${token}`;
+
     try {
       const response = await axios.get("http://localhost:3333/users/me");
       response?.data?.myList.forEach((data) => {
@@ -36,6 +38,7 @@ const FilmeDetailsPage = (props) => {
 
   const addFavorite = async () => {
     const axios = Axios;
+    axios.defaults.headers.authorization = await `Bearer ${token}`;
 
     try {
       const response = await axios.put(
@@ -51,6 +54,7 @@ const FilmeDetailsPage = (props) => {
 
   const removeFavorite = async () => {
     const axios = Axios;
+    axios.defaults.headers.authorization = await `Bearer ${token}`;
 
     try {
       const response = await axios.delete(
@@ -70,6 +74,7 @@ const FilmeDetailsPage = (props) => {
 
   const requestMedia = async () => {
     const axios = Axios;
+    axios.defaults.headers.authorization = null;
     const response = await axios.get(
       `http://localhost:1337/api/medias/${id}?populate=*`
     );
@@ -79,12 +84,10 @@ const FilmeDetailsPage = (props) => {
     setLogo(responselogo.data.data);
     setMedias(response.data.data);
   };
-  useEffect(() => {
-    const axios = Axios;
 
-    requestMedia();
-    axios.defaults.headers.authorization = `Bearer ${token}`;
+  useEffect(() => {
     isFavorite();
+    requestMedia();
   }, []);
 
   let base_url = "http://localhost:1337";
