@@ -40,7 +40,7 @@ const DashboardPage = () => {
       <Row justify="center">
         <Col span={12}>
           <Carousel autoplay dotPosition={"top"}>
-            {filmesDestaques[2].Subcategorias.map((filme) => {
+            {/* {filmesDestaques[2].Subcategorias.map((filme) => {
               if (filme.destaque) {
                 return (
                   <NavLink to={`/filme/${filme.Id}`} key={filme.Id}>
@@ -56,7 +56,7 @@ const DashboardPage = () => {
               } else {
                 return null;
               }
-            })}
+            })} */}
           </Carousel>
         </Col>
       </Row>

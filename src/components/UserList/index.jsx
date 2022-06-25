@@ -10,8 +10,18 @@ const UserList = (props) => {
 
   const [listaFilmesStrapi, setListaFilmesStrapi] = useState([]);
 
-  const confirm = (e) => {
-    console.log(e);
+  const confirm = async (id) => {
+    const axios = Axios;
+
+    try {
+      await axios.delete("http://localhost:3333/users/me/removevideo", {
+        data: {
+          strapiVideoId: Number(id),
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
     message.success("Removido com sucesso");
   };
 
@@ -31,40 +41,44 @@ const UserList = (props) => {
   return (
     <>
       {Lista ? (
-        Lista.lenght > 1 ? (listaFilmesStrapi.map(async (dado) => {
-          const posterLink =
-            dado?.attributes?.poster?.data[0]?.attributes?.name;
-          const title = dado?.attributes?.title;
-          return (
-            <Row gutter={16}>
-              <Col>
-                <NavLink to="/filme/15">
-                  <div className="image">
-                    <img
-                      class="image__img"
-                      style={{ width: 150, height: 220 }}
-                      alt={`poster ${title}`}
-                      src={posterLink}
-                    />
-                    <div className="image__overlay">
-                      <div className="image__title">{title}</div>
+        Lista.lenght > 1 ? (
+          listaFilmesStrapi.map(async (dado) => {
+            const posterLink =
+              dado?.attributes?.poster?.data[0]?.attributes?.name;
+            const title = dado?.attributes?.title;
+            return (
+              <Row gutter={16}>
+                <Col>
+                  <NavLink to="/filme/15">
+                    <div className="image">
+                      <img
+                        class="image__img"
+                        style={{ width: 150, height: 220 }}
+                        alt={`poster ${title}`}
+                        src={posterLink}
+                      />
+                      <div className="image__overlay">
+                        <div className="image__title">{title}</div>
+                      </div>
                     </div>
-                  </div>
-                </NavLink>
-                <Popconfirm
-                  title="Deseja removê-lo da lista?"
-                  okText="Sim"
-                  cancelText="Nao"
-                  onConfirm={confirm}
-                >
-                  <Button type="text" danger>
-                    <DeleteOutlined />
-                  </Button>
-                </Popconfirm>
-              </Col>
-            </Row>
-          );
-        })) : (<Empty description={false} />)
+                  </NavLink>
+                  <Popconfirm
+                    title="Deseja removê-lo da lista?"
+                    okText="Sim"
+                    cancelText="Nao"
+                    onConfirm={confirm(dado?.id)}
+                  >
+                    <Button type="text" danger>
+                      <DeleteOutlined />
+                    </Button>
+                  </Popconfirm>
+                </Col>
+              </Row>
+            );
+          })
+        ) : (
+          <Empty description={false} />
+        )
       ) : (
         <Empty description={false} />
       )}
