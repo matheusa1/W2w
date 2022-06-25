@@ -6,7 +6,6 @@ import { Title } from "../../components/Title";
 import Loading from "../../components/Loading";
 import { DebounceInput } from "react-debounce-input";
 import Axios from "axios";
-import InputAllowClear from "./components/InputAllowClear";
 
 let value = 0;
 let pagination = 1;
@@ -37,6 +36,8 @@ const SearchPage = () => {
   const requestData = async () => {
     const axios = Axios;
     setCategoryId();
+    axios.defaults.headers.authorization = null;
+
     let response;
     if (inputText === "" || inputText === undefined) {
       response = await axios.get(
