@@ -1,7 +1,7 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Row, Col, Button, Popconfirm, message, Empty } from "antd";
 import Axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./index.css";
 
@@ -28,21 +28,30 @@ const UserList = (props) => {
   console.log(Lista);
 
   const axios = Axios;
-
-  if (Lista) {
-    Lista.forEach(async (dado) => {
-      const response = await axios.get(
-        `http://localhost:1337/api/medias/${dado.strapiId}`
-      );
-      setListaFilmesStrapi((state) => [...state, response.data]);
-    });
+  
+  const GetList = async () => {
+    if (Lista) {
+      axios.defaults.headers.authorization = null;
+      Lista.map(async (dado) => {
+        const response = await axios.get(
+          `https://w2wbackend.herokuapp.com/api/medias/${dado.strapiId}`
+        );
+        setListaFilmesStrapi((state) => [...state, response.data]);
+      });
+      console.log("lista dos filmes", listaFilmesStrapi)
+    }
   }
-
+  useEffect(() => {
+    GetList();
+    console.log(listaFilmesStrapi.length)
+  }, []);
+  console.log({listaFilmesStrapi})
   return (
     <>
-      {Lista ? (
-        Lista.lenght > 1 ? (
-          listaFilmesStrapi.map(async (dado) => {
+       
+         { listaFilmesStrapi.lenght >= 1 ? (
+          listaFilmesStrapi?.map(async (dado) => {
+            console.log({dado})
             const posterLink =
               dado?.attributes?.poster?.data[0]?.attributes?.name;
             const title = dado?.attributes?.title;
@@ -66,7 +75,7 @@ const UserList = (props) => {
                     title="Deseja removê-lo da lista?"
                     okText="Sim"
                     cancelText="Nao"
-                    onConfirm={confirm(dado?.id)}
+                    onConfirm={() => confirm(dado?.id)}
                   >
                     <Button type="text" danger>
                       <DeleteOutlined />
@@ -75,13 +84,8 @@ const UserList = (props) => {
                 </Col>
               </Row>
             );
-          })
-        ) : (
-          <Empty description={false} />
-        )
-      ) : (
-        <Empty description={false} />
-      )}
+          })) : (<Empty/>)
+      }
     </>
   );
 };

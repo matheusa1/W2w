@@ -32,7 +32,7 @@ const ProfilePage = () => {
   let Poster =
     "https://img.elo7.com.br/product/zoom/2C15759/big-poster-anime-black-clover-lo001-tamanho-90x60-cm-presente-nerd.jpg";
   let Title = "Black Clover";
-
+  console.log(films)
   return (
     <>
       <Row justify="center">
@@ -71,7 +71,9 @@ const ProfilePage = () => {
           <br />
           <Col>
             {/* <UserList Filmes={films} Poster={Poster} Title={Title}/> */}
-            <UserList Filmes={films} />
+            {films && (
+              <UserList Filmes={films} />
+            )}
           </Col>
         </div>
       </Row>
