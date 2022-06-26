@@ -17,7 +17,7 @@ const W2w = props => {
                             <Space align="center" direction="vertical" size="middle">
                                 <Space align="center" direction="horizontal" size="middle">
                                     <Meta
-                                    avatar={<Avatar src={"http://localhost:1337" + item?.logo?.data?.attributes?.formats?.thumbnail?.url} />}
+                                    avatar={<Avatar src={"https://w2wbackend.herokuapp.com" + item?.logo?.data?.attributes?.formats?.thumbnail?.url} />}
                                     title={item.name}
                                     />
                                 </Space>

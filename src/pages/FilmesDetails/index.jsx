@@ -1,5 +1,4 @@
-import { Typography, Space, Affix, Divider, Row, Col } from "antd";
-import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { Typography, Space, Divider, Row, Col } from "antd";
 import Axios from "axios";
 import { useParams } from "react-router";
 import React, { useEffect, useState } from "react";
@@ -36,42 +35,6 @@ const FilmeDetailsPage = (props) => {
     }
   };
 
-  const addFavorite = async () => {
-    const axios = Axios;
-    axios.defaults.headers.authorization = await `Bearer ${token}`;
-
-    try {
-      const response = await axios.put(
-        "http://localhost:3333/users/me/addvideo",
-        { strapiVideoId: Number(id) }
-      );
-
-      setFavorito(!favorito);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const removeFavorite = async () => {
-    const axios = Axios;
-    axios.defaults.headers.authorization = await `Bearer ${token}`;
-
-    try {
-      const response = await axios.delete(
-        "http://localhost:3333/users/me/removevideo",
-        {
-          data: {
-            strapiVideoId: Number(id),
-          },
-        }
-      );
-
-      setFavorito(!favorito);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const requestMedia = async () => {
     const axios = Axios;
     axios.defaults.headers.authorization = null;
@@ -92,15 +55,13 @@ const FilmeDetailsPage = (props) => {
 
   let base_url = "https://w2wbackend.herokuapp.com";
   const getFullUrl = (path) => `${base_url}${path}`;
-
+  
   let titulo = medias?.attributes?.title;
   let desc = medias?.attributes?.description;
   let posterLink = medias?.attributes?.poster?.data?.map((item) =>
     getFullUrl(item?.attributes?.formats?.medium?.url)
   );
   let trailerLink = medias?.attributes?.link;
-  let rate = 9.2; //Tem que fazer os bagulho lá tá ligado? Soma das rating/quantidade de rating <--
-  let rateIMDB = 8.0;
   let srcPics = medias?.attributes?.galery?.data?.map((item) =>
     getFullUrl(item?.attributes?.formats?.large?.url)
   );
@@ -132,22 +93,9 @@ const FilmeDetailsPage = (props) => {
       </Col>
 
       <Col xxl={8} xl={24} lg={12}>
-        <a
-          onClick={() => {
-            favorito ? removeFavorite() : addFavorite();
-          }}
-        >
-          {favorito ? (
-            <HeartFilled style={{ fontSize: 25 }} />
-          ) : (
-            <HeartOutlined style={{ fontSize: 25 }} />
-          )}
-        </a>
         <ReviewBox
           plat_data={plat_data}
           banner={banner}
-          rate={rate}
-          rateIMDB={rateIMDB}
         />
       </Col>
     </Row>
