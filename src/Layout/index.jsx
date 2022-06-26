@@ -16,7 +16,7 @@ import { useState } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-let isSingedIn = false;
+let isSingedIn = true;
 
 const Applayout = ({ children }) => {
   const [showMenu, setShowMenu] = useState(true);

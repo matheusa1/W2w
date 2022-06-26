@@ -1,55 +1,84 @@
 import { Row, Col, Divider } from "antd";
-import FavoritosBox from "../../components/FavoritosBox";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import UserList from "../../components/UserList";
 import TextBox from "../../components/TextBox";
 import TotalWatched from "../../components/TotalWatched";
-import WatchedBox from "../../components/WatchedBox";
+import { useAuth } from "../../hooks/auth";
 
 const ProfilePage = () => {
- 
-  let Watched = 10;
-  let Pic = 'https://super.abril.com.br/wp-content/uploads/2018/05/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png'
-  let Name = 'Andreias Pereira'
-  let Bio = 'Tô fazendo nadammmmm vô vê uns filminho. Meu ódio por Hollywood é algo extremamente real. Queria que Sion Sono fosse meu pai.'
-  let Poster = "https://img.elo7.com.br/product/zoom/2C15759/big-poster-anime-black-clover-lo001-tamanho-90x60-cm-presente-nerd.jpg"
-  let Title = "Black Clover"
-  let Rate = 4.5
+  const { token } = useAuth();
+  const [nick, setNick] = useState();
+  const [loc, setLocation] = useState();
+  const [desc, setDescription] = useState();
+  const [films, setFilms] = useState();
 
+  const requestUser = async () => {
+    axios.defaults.headers.authorization = `Bearer ${token}`;
+    const { data } = await axios.get("http://localhost:3333/users/me");
+    setNick(data.username);
+    setLocation(data.from);
+    setDescription(data.description);
+    setFilms(data.myList);
+    console.log(data);
+  };
+  useEffect(() => {
+    requestUser();
+  }, []);
+
+  let Watched = 10;
+  let Pic =
+    "https://super.abril.com.br/wp-content/uploads/2018/05/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png";
+  let Poster =
+    "https://img.elo7.com.br/product/zoom/2C15759/big-poster-anime-black-clover-lo001-tamanho-90x60-cm-presente-nerd.jpg";
+  let Title = "Black Clover";
+  console.log(films)
   return (
-  <>
-    <Row justify="center">    
-        <Col xxl={{pull: 0, span: 6}} xl={{pull: 0, span: 6}} lg={{pull: 0, span: 6}} md={{pull: 0, span: 8}} sm={{pull: 0, span: 12}} xs={{ pull: 2, span: 16 }} >
-          <TextBox Name={Name} Bio={Bio} Pic={Pic}/>
+    <>
+      <Row justify="center">
+        <Col
+          xxl={{ pull: 0, span: 6 }}
+          xl={{ pull: 0, span: 6 }}
+          lg={{ pull: 0, span: 6 }}
+          md={{ pull: 0, span: 8 }}
+          sm={{ pull: 0, span: 12 }}
+          xs={{ pull: 2, span: 16 }}
+        >
+          <TextBox Name={nick} Bio={desc} Pic={Pic} From={loc} />
         </Col>
         <Row align="bottom">
-          <Col xxl={{push: 24}} xl={{push: 24}} lg={{push: 24}} md={{push: 24}} sm={{push: 24}} >
-            <TotalWatched Watched={Watched}/>
+          <Col
+            xxl={{ push: 24 }}
+            xl={{ push: 24 }}
+            lg={{ push: 24 }}
+            md={{ push: 24 }}
+            sm={{ push: 24 }}
+          >
+            {films ? (
+              <TotalWatched Watched={films.length} />
+            ) : (
+              <TotalWatched Watched={0} />
+            )}
           </Col>
         </Row>
-      <Divider/>
-      <div>
-        <Col >
-          <h2>Favoritos</h2>
-        </Col>
-        <br/>
-        <Col>
-          <FavoritosBox Poster={Poster} Title={Title}/>
-        </Col>
-      </div> 
-    </Row>
-    <br/>
-    <Row justify="center">
+        <Divider />
         <div>
-            <Col >
-                <h2>Assistidos recentemente</h2>
-            </Col>
-            <br/>
+          <Row justify="center">
             <Col>
-                <WatchedBox Poster={Poster} Title={Title} Rate={Rate}/>
+              <h2>Minha Lista</h2>
             </Col>
+          </Row>
+          <br />
+          <Col>
+            {/* <UserList Filmes={films} Poster={Poster} Title={Title}/> */}
+            {films && (
+              <UserList Filmes={films} />
+            )}
+          </Col>
         </div>
-    </Row>
-  </>
-  )
+      </Row>
+    </>
+  );
 };
 
 export default ProfilePage;
