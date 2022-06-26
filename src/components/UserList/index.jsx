@@ -1,12 +1,15 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Row, Col, Button, Popconfirm, message, Empty } from "antd";
 import Axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
 import "./index.css";
 
 const UserList = (props) => {
+  const { token } = useAuth();
   const Lista = props.Filmes;
+  const requestUser = props.requestUser
 
   const [listaFilmesStrapi, setListaFilmesStrapi] = useState([]);
 
@@ -14,50 +17,56 @@ const UserList = (props) => {
     const axios = Axios;
 
     try {
+      axios.defaults.headers.authorization = `Bearer ${token}`;
       await axios.delete("http://localhost:3333/users/me/removevideo", {
         data: {
           strapiVideoId: Number(id),
         },
       });
+      await requestUser();
+      message.success("Removido com sucesso");
     } catch (error) {
       console.log(error);
+      message.error(`Erro ao remover o filme com id ${id}`);
     }
-    message.success("Removido com sucesso");
   };
-
-  console.log(Lista);
 
   const axios = Axios;
   
-  const GetList = async () => {
+  const GetList = useCallback(async () => {
+
     if (Lista) {
       axios.defaults.headers.authorization = null;
-      Lista.map(async (dado) => {
-        const response = await axios.get(
-          `https://w2wbackend.herokuapp.com/api/medias/${dado.strapiId}`
-        );
-        setListaFilmesStrapi((state) => [...state, response.data]);
-      });
-      console.log("lista dos filmes", listaFilmesStrapi)
+      Promise.all(
+        Lista.map(async (dado) => {
+          return await axios.get(
+            `https://w2wbackend.herokuapp.com/api/medias/${dado.strapiId}`
+          );
+        }),
+      ).then(values => {
+        console.log(values);
+        const filmes = values.map(response => response.data?.data)
+        console.log({filmes});
+        setListaFilmesStrapi(filmes);
+      })
     }
-  }
+  },[Lista, axios]);
   useEffect(() => {
     GetList();
-    console.log(listaFilmesStrapi.length)
-  }, []);
-  console.log({listaFilmesStrapi})
+  }, [GetList]);
+
+  console.log({listaFilmesStrapi,teste:listaFilmesStrapi?.length});
+  if (listaFilmesStrapi?.length === 0) return <Empty/>;
+
   return (
-    <>
-       
-         { listaFilmesStrapi.lenght >= 1 ? (
-          listaFilmesStrapi?.map(async (dado) => {
-            console.log({dado})
-            const posterLink =
-              dado?.attributes?.poster?.data[0]?.attributes?.name;
-            const title = dado?.attributes?.title;
-            return (
-              <Row gutter={16}>
-                <Col>
+    <Row gutter={16}>
+      {listaFilmesStrapi?.map((dado) => {
+        console.log({dado});
+        const posterLink =
+        dado?.attributes?.poster?.data[0]?.attributes?.name;
+        const title = dado?.attributes?.title;
+      return (
+        <Col >
                   <NavLink to="/filme/15">
                     <div className="image">
                       <img
@@ -82,11 +91,8 @@ const UserList = (props) => {
                     </Button>
                   </Popconfirm>
                 </Col>
-              </Row>
-            );
-          })) : (<Empty/>)
-      }
-    </>
+      )})}
+    </Row>
   );
 };
 
