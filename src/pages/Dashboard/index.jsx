@@ -24,7 +24,7 @@ const DashboardPage = () => {
     axios.defaults.headers.authorization = null;
 
     const response = await axios.get(
-      "http://localhost:1337/api/medias?populate=%2A&pagination[start]=0&pagination[limit]=4"
+      "https://w2wbackend.herokuapp.com/api/medias?populate=%2A&pagination[start]=0&pagination[limit]=4"
     );
     setData(response?.data?.data);
     console.log(Data);

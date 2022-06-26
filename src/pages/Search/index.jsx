@@ -23,13 +23,13 @@ const SearchPage = () => {
 
   const setCategoryId = () => {
     if (value === 1) {
-      categoryId = 7;
+      categoryId = 3;
     }
     if (value === 2) {
-      categoryId = 6;
+      categoryId = 2;
     }
     if (value === 3) {
-      categoryId = 5;
+      categoryId = 1;
     }
   };
 
@@ -41,7 +41,7 @@ const SearchPage = () => {
     let response;
     if (inputText === "" || inputText === undefined) {
       response = await axios.get(
-        `http://localhost:1337/api/${
+        `https://w2wbackend.herokuapp.com/api/${
           value === 0
             ? `platforms?populate=%2A&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
             : `medias?populate=%2A&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
@@ -49,7 +49,7 @@ const SearchPage = () => {
       );
     } else {
       response = await axios.get(
-        `http://localhost:1337/api/${
+        `https://w2wbackend.herokuapp.com/api/${
           value === 0
             ? `platforms?populate=%2A&filters[name][$containsi]=${inputText}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
             : `medias?populate=%2A&filters[title][$containsi]=${inputText}&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`

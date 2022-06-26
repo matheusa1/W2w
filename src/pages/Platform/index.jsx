@@ -20,10 +20,10 @@ const CategoryPage = () => {
     const axios = Axios;
     axios.defaults.headers.authorization = null;
     const responseLogo = await axios.get(
-      `http://localhost:1337/api/platforms/${id}?populate=*`
+      `https://w2wbackend.herokuapp.com/api/platforms/${id}?populate=*`
     );
     const response = await axios.get(
-      `http://localhost:1337/api/medias?populate=%2A&filters[platforms][name][$eq]=${responseLogo?.data?.data.attributes.name}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+      `https://w2wbackend.herokuapp.com/api/medias?populate=%2A&filters[platforms][name][$eq]=${responseLogo?.data?.data.attributes.name}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
     );
     setLogo(responseLogo?.data?.data);
     setData(response?.data);

@@ -76,10 +76,10 @@ const FilmeDetailsPage = (props) => {
     const axios = Axios;
     axios.defaults.headers.authorization = null;
     const response = await axios.get(
-      `http://localhost:1337/api/medias/${id}?populate=*`
+      `https://w2wbackend.herokuapp.com/api/medias/${id}?populate=*`
     );
     const responselogo = await axios.get(
-      `http://localhost:1337/api/medias/${id}?populate=platforms.logo`
+      `https://w2wbackend.herokuapp.com/api/medias/${id}?populate=platforms.logo`
     );
     setLogo(responselogo.data.data);
     setMedias(response.data.data);
@@ -90,7 +90,7 @@ const FilmeDetailsPage = (props) => {
     requestMedia();
   }, []);
 
-  let base_url = "http://localhost:1337";
+  let base_url = "https://w2wbackend.herokuapp.com";
   const getFullUrl = (path) => `${base_url}${path}`;
 
   let titulo = medias?.attributes?.title;

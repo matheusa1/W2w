@@ -8,15 +8,17 @@ const CadastroPage = () => {
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const axios = Axios;
-    await axios.post("http://localhost:3333/auth/signup", {
-      email: values.email,
-      password: values.password
-    }).then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    await axios
+      .post("http://localhost:3333/auth/signup", {
+        email: values.email,
+        password: values.password,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
