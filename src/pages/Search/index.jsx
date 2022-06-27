@@ -15,7 +15,7 @@ const SearchPage = () => {
   const [Data, setData] = useState();
   const [inputText, setInputText] = useState("");
 
-  const location = useLocation()
+  const location = useLocation();
 
   let categoryId;
 
@@ -26,13 +26,16 @@ const SearchPage = () => {
 
   const setCategoryId = () => {
     if (value === 1) {
-      categoryId = 3;
+      // categoryId = 3;
+      categoryId = 7;
     }
     if (value === 2) {
-      categoryId = 2;
+      // categoryId = 2;
+      categoryId = 6;
     }
     if (value === 3) {
-      categoryId = 1;
+      // categoryId = 1;
+      categoryId = 5;
     }
   };
 
@@ -43,8 +46,23 @@ const SearchPage = () => {
 
     let response;
     if (inputText === "" || inputText === undefined) {
+      //   response = await axios.get(
+      //     `https://w2wbackend.herokuapp.com/api/${
+      //       value === 0
+      //         ? `platforms?populate=%2A&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+      //         : `medias?populate=%2A&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+      //     }`
+      //   );
+      // } else {
+      //   response = await axios.get(
+      //     `https://w2wbackend.herokuapp.com/api/${
+      //       value === 0
+      //         ? `platforms?populate=%2A&filters[name][$containsi]=${inputText}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+      //         : `medias?populate=%2A&filters[title][$containsi]=${inputText}&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+      //     }`
+      //   );
       response = await axios.get(
-        `https://w2wbackend.herokuapp.com/api/${
+        `http://localhost:1337/api/${
           value === 0
             ? `platforms?populate=%2A&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
             : `medias?populate=%2A&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
@@ -52,7 +70,7 @@ const SearchPage = () => {
       );
     } else {
       response = await axios.get(
-        `https://w2wbackend.herokuapp.com/api/${
+        `http://localhost:1337/api/${
           value === 0
             ? `platforms?populate=%2A&filters[name][$containsi]=${inputText}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
             : `medias?populate=%2A&filters[title][$containsi]=${inputText}&filters[category][id][$eq]=${categoryId}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
@@ -61,25 +79,27 @@ const SearchPage = () => {
     }
     setData(response?.data);
     console.log(response?.data);
-  },[categoryId, inputText, setCategoryId]);
+  }, [categoryId, inputText, setCategoryId]);
 
   useEffect(() => {
     requestData();
   }, [inputText]);
 
-  const ActionButton = useCallback((num) => {
-    value = num;
-    pagination = 0;
-    requestData();
-  },[requestData]);
+  const ActionButton = useCallback(
+    (num) => {
+      value = num;
+      pagination = 1;
+      requestData();
+    },
+    [requestData]
+  );
 
-  useEffect(()=>{
-    if(location?.state?.search){
-      setInputText(location.state.search)
+  useEffect(() => {
+    if (location?.state?.search) {
+      setInputText(location.state.search);
       ActionButton(1);
     }
-
-  },[])
+  }, []);
 
   return (
     <>

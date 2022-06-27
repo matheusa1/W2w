@@ -1,6 +1,6 @@
 import { Input, Carousel, Row, Col } from "antd";
 import { useEffect, useState } from "react";
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Title } from "../../components/Title";
 import * as S from "./styles";
 import Axios from "axios";
@@ -18,14 +18,17 @@ const contentStyle = {
 
 const DashboardPage = () => {
   const [Data, setData] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const requestData = async () => {
     const axios = Axios;
     axios.defaults.headers.authorization = null;
 
+    // const response = await axios.get(
+    //   "https://w2wbackend.herokuapp.com/api/medias?populate=%2A&pagination[start]=0&pagination[limit]=4"
+    // );
     const response = await axios.get(
-      "https://w2wbackend.herokuapp.com/api/medias?populate=%2A&pagination[start]=0&pagination[limit]=4"
+      "http://localhost:1337/api/medias?populate=%2A&pagination[start]=0&pagination[limit]=4"
     );
     setData(response?.data?.data);
     console.log(Data);
@@ -36,7 +39,7 @@ const DashboardPage = () => {
   }, []);
 
   const onSearch = (value) => {
-    navigate('/search',{state:{search:value},replace:false})
+    navigate("/search", { state: { search: value }, replace: false });
   };
 
   return (

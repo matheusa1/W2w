@@ -19,11 +19,17 @@ const CategoryPage = () => {
   const requestData = async () => {
     const axios = Axios;
     axios.defaults.headers.authorization = null;
+    // const responseLogo = await axios.get(
+    //   `https://w2wbackend.herokuapp.com/api/platforms/${id}?populate=*`
+    // );
+    // const response = await axios.get(
+    //   `https://w2wbackend.herokuapp.com/api/medias?populate=%2A&filters[platforms][name][$eq]=${responseLogo?.data?.data.attributes.name}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+    // );
     const responseLogo = await axios.get(
-      `https://w2wbackend.herokuapp.com/api/platforms/${id}?populate=*`
+      `http://localhost:1337/api/platforms/${id}?populate=*`
     );
     const response = await axios.get(
-      `https://w2wbackend.herokuapp.com/api/medias?populate=%2A&filters[platforms][name][$eq]=${responseLogo?.data?.data.attributes.name}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+      `http://localhost:1337/api/medias?populate=%2A&filters[platforms][name][$eq]=${responseLogo?.data?.data.attributes.name}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
     );
     setLogo(responseLogo?.data?.data);
     setData(response?.data);

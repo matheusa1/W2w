@@ -6,56 +6,44 @@ import ClassifcEt from "../../components/ClassEt";
 import MediaBox from "../../components/MediaBox";
 import PosterImg from "../../components/MoviePic";
 import ReviewBox from "../../components/ReviewBox";
-import { useAuth } from "../../hooks/auth";
 
 const FilmeDetailsPage = (props) => {
-  const [favorito, setFavorito] = useState(false);
   const { Text, Title } = Typography;
 
   const [medias, setMedias] = useState();
   const [logo, setLogo] = useState();
 
   const params = useParams();
-  const { token } = useAuth();
   const { id } = params;
-
-  const isFavorite = async () => {
-    const axios = Axios;
-    axios.defaults.headers.authorization = `Bearer ${token}`;
-
-    try {
-      const response = await axios.get("http://localhost:3333/users/me");
-      response?.data?.myList.forEach((data) => {
-        if (data.strapiId === Number(id)) {
-          setFavorito(true);
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const requestMedia = async () => {
     const axios = Axios;
     axios.defaults.headers.authorization = null;
+    // const response = await axios.get(
+    //   `https://w2wbackend.herokuapp.com/api/medias/${id}?populate=*`
+    // );
+    // const responselogo = await axios.get(
+    //   `https://w2wbackend.herokuapp.com/api/medias/${id}?populate=platforms.logo`
+    // );
     const response = await axios.get(
-      `https://w2wbackend.herokuapp.com/api/medias/${id}?populate=*`
+      `http://localhost:1337/api/medias/${id}?populate=*`
     );
     const responselogo = await axios.get(
-      `https://w2wbackend.herokuapp.com/api/medias/${id}?populate=platforms.logo`
+      `http://localhost:1337/api/medias/${id}?populate=platforms.logo`
     );
     setLogo(responselogo.data.data);
     setMedias(response.data.data);
   };
 
   useEffect(() => {
-    isFavorite();
     requestMedia();
   }, []);
 
-  let base_url = "https://w2wbackend.herokuapp.com";
+  // let base_url = "https://w2wbackend.herokuapp.com";
+  let base_url = "http://localhost:1337";
+
   const getFullUrl = (path) => `${base_url}${path}`;
-  
+
   let titulo = medias?.attributes?.title;
   let desc = medias?.attributes?.description;
   let posterLink = medias?.attributes?.poster?.data?.map((item) =>
@@ -93,10 +81,7 @@ const FilmeDetailsPage = (props) => {
       </Col>
 
       <Col xxl={8} xl={24} lg={12}>
-        <ReviewBox
-          plat_data={plat_data}
-          banner={banner}
-        />
+        <ReviewBox plat_data={plat_data} banner={banner} />
       </Col>
     </Row>
   );

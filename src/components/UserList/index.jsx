@@ -39,8 +39,11 @@ const UserList = (props) => {
       axios.defaults.headers.authorization = null;
       Promise.all(
         Lista.map(async (dado) => {
+          // return await axios.get(
+          //   `https://w2wbackend.herokuapp.com/api/medias/${dado.strapiId}`
+          // );
           return await axios.get(
-            `https://w2wbackend.herokuapp.com/api/medias/${dado.strapiId}`
+            `http://localhost:1337/api/medias/${dado.strapiId}`
           );
         }),
       ).then(values => {
