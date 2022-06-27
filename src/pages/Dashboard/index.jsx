@@ -1,6 +1,6 @@
 import { Input, Carousel, Row, Col } from "antd";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import { Title } from "../../components/Title";
 import * as S from "./styles";
 import Axios from "axios";
@@ -18,6 +18,7 @@ const contentStyle = {
 
 const DashboardPage = () => {
   const [Data, setData] = useState();
+  const navigate = useNavigate()
 
   const requestData = async () => {
     const axios = Axios;
@@ -35,7 +36,7 @@ const DashboardPage = () => {
   }, []);
 
   const onSearch = (value) => {
-    console.log(value);
+    navigate('/search',{state:{search:value},replace:false})
   };
 
   return (

@@ -1,11 +1,12 @@
 import { Button, Row, Col, Divider, Input, Pagination } from "antd";
 import CardResultsPlatforms from "./components/CardResultsPlatforms";
 import CardResults from "../../components/CardResults";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Title } from "../../components/Title";
 import Loading from "../../components/Loading";
 import { DebounceInput } from "react-debounce-input";
 import Axios from "axios";
+import { useLocation } from "react-router";
 
 let value = 0;
 let pagination = 1;
@@ -13,6 +14,8 @@ let itensPorPaginas = 15;
 const SearchPage = () => {
   const [Data, setData] = useState();
   const [inputText, setInputText] = useState("");
+
+  const location = useLocation()
 
   let categoryId;
 
@@ -33,7 +36,7 @@ const SearchPage = () => {
     }
   };
 
-  const requestData = async () => {
+  const requestData = useCallback(async () => {
     const axios = Axios;
     setCategoryId();
     axios.defaults.headers.authorization = null;
@@ -58,17 +61,25 @@ const SearchPage = () => {
     }
     setData(response?.data);
     console.log(response?.data);
-  };
+  },[categoryId, inputText, setCategoryId]);
 
   useEffect(() => {
     requestData();
   }, [inputText]);
 
-  const ActionButton = (num) => {
+  const ActionButton = useCallback((num) => {
     value = num;
     pagination = 0;
     requestData();
-  };
+  },[requestData]);
+
+  useEffect(()=>{
+    if(location?.state?.search){
+      setInputText(location.state.search)
+      ActionButton(1);
+    }
+
+  },[])
 
   return (
     <>
