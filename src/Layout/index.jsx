@@ -2,17 +2,15 @@ import { Layout, Menu } from "antd";
 import {
   SearchOutlined,
   HomeOutlined,
-  AppstoreOutlined,
   UserOutlined,
   LoginOutlined,
   FormOutlined,
-  SettingOutlined,
-  EditOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import * as S from "./styles";
 import { useState } from "react";
+import { useAuth } from "../hooks/auth";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -20,6 +18,7 @@ let isSingedIn = true;
 
 const Applayout = ({ children }) => {
   const [showMenu, setShowMenu] = useState(true);
+  const {logOut} = useAuth()
 
   const onCollapse = (collapsed) => {
     setShowMenu((s) => !s);
@@ -46,8 +45,8 @@ const Applayout = ({ children }) => {
               <Menu.Item key={0} icon={<UserOutlined />}>
                 <NavLink to="/profile">Ver meu perfil</NavLink>
               </Menu.Item>
-              <Menu.Item key={1} icon={<LogoutOutlined />}>
-                <NavLink to="/logout">Sair</NavLink>
+              <Menu.Item key={1} icon={<LogoutOutlined />} onClick={logOut}>
+                <NavLink to="/login">Sair</NavLink>
               </Menu.Item>
             </Menu.SubMenu>
           ) : (

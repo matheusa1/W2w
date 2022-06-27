@@ -3,9 +3,11 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import * as S from "../../components/Title";
 import Axios from "axios";
 import { useAuth } from "../../hooks/auth"
+import { useNavigate } from "react-router";
 
 const LoginPage = () => {
   const auth = useAuth()
+  const navigate = useNavigate()
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const axios = Axios;
@@ -13,7 +15,7 @@ const LoginPage = () => {
       email: values.email,
       password: values.password,
     }).then(function (response) {
-      console.log(response);
+      navigate('/')
     })
     .catch(function (error) {
       console.log(error);

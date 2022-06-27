@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   const logOut = useCallback(() => {
     localStorage.removeItem('@W2W:token')
 
-    setData({})
+    setData({token:undefined})
   }, [])
 
   return (

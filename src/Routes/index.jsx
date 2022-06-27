@@ -1,4 +1,5 @@
-import { Route, Routes } from "react-router-dom";
+import {Routes, Route } from "react-router-dom";
+
 import Cadastro from "../pages/Cadastro";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
@@ -8,21 +9,45 @@ import SearchPage from "../pages/Search";
 import EditProfile from "../pages/EditProfile";
 import PerfilPage from "../pages/Perfil";
 import PlatformPage from "../pages/Platform";
-import {AuthProvider} from '../hooks/auth'
-const AppRoutes = () => (
-  <AuthProvider>
+import PrivateRoute from "./PrivateRoute";
+
+
+const AppRoutes = () => {
+  
+  return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path='/profile' element={<PrivateRoute/>}>
+        <Route path="/profile" element={<PerfilPage />} />
+      </Route>
+
+      <Route path='/profile/edit' element={<PrivateRoute/>}>
+        <Route path="/profile/edit" element={<EditProfile />} />
+      </Route>
+
+      <Route path='/' element={<PrivateRoute/>}>
+        <Route path="/" element={<Dashboard />} />
+      </Route>
+
+      <Route path='/filme/:id' element={<PrivateRoute/>}>
+        <Route path="/filme/:id" element={<FilmeDetails />} />
+      </Route>
+
+      <Route path='/search' element={<PrivateRoute/>}>
+        <Route path="/search" element={<SearchPage />} />
+      </Route>
+
+      <Route path='/about' element={<PrivateRoute/>}>
+        <Route path="/about" element={<Sobre />}/>
+      </Route>
+
+      <Route path='/platform/:id' element={<PrivateRoute/>}>
+        <Route path="/platform/:id" element={<PlatformPage />} />
+      </Route>
+
+
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Cadastro />} />
-      <Route path="/filme/:id" element={<FilmeDetails />} />
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/profile" element={<PerfilPage />} />
-      <Route path="/profile/edit" element={<EditProfile />} />
-      <Route path="/about" element={<Sobre />}/>
-      <Route path="/platform/:id" element={<PlatformPage />} />
     </Routes>
-  </AuthProvider>
-);
+)};
 
 export default AppRoutes;
