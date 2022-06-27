@@ -1,7 +1,8 @@
-import { Typography, Row, Col, Space, Input, Button } from "antd";
+import { Typography, Row, Col, Space, Input, Button, message } from "antd";
 import { useEffect, useState } from "react";
 import  axios  from "axios";
 import { useAuth } from "../../hooks/auth"
+import { useNavigate } from "react-router";
 
 
 const ProfileSettings = props => {
@@ -13,16 +14,18 @@ const ProfileSettings = props => {
   const [email, setEmail] = useState();
   const [loc, setLocation] = useState();
   const [desc, setDescription] = useState();
+  const navigate = useNavigate()
 
   async function handleSubmmit(){
-    const response = await axios.put("http://localhost:3333/users/me", {
+    await axios.put("http://localhost:3333/users/me", {
         name,
         username: nick,
         email: email,
         from: loc,
         description: desc
     })
-    console.log(response.data);
+    navigate('/profile')
+    message.success('Perfil editado com sucesso!')
   }
 
   const requestUser = async () => {
