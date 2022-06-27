@@ -10,7 +10,7 @@ import { useLocation } from "react-router";
 
 let value = 0;
 let pagination = 1;
-let itensPorPaginas = 15;
+let itensPorPaginas = 10;
 const SearchPage = () => {
   const [Data, setData] = useState();
   const [inputText, setInputText] = useState("");

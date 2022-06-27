@@ -19,12 +19,6 @@ const FilmeDetailsPage = (props) => {
   const requestMedia = async () => {
     const axios = Axios;
     axios.defaults.headers.authorization = null;
-    // const response = await axios.get(
-    //   `https://w2wbackend.herokuapp.com/api/medias/${id}?populate=*`
-    // );
-    // const responselogo = await axios.get(
-    //   `https://w2wbackend.herokuapp.com/api/medias/${id}?populate=platforms.logo`
-    // );
     const response = await axios.get(
       `http://localhost:1337/api/medias/${id}?populate=*`
     );
@@ -39,7 +33,6 @@ const FilmeDetailsPage = (props) => {
     requestMedia();
   }, []);
 
-  // let base_url = "https://w2wbackend.herokuapp.com";
   let base_url = "http://localhost:1337";
 
   const getFullUrl = (path) => `${base_url}${path}`;

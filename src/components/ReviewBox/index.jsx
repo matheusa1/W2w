@@ -83,9 +83,9 @@ const ReviewBox = (props) => {
               }}
             >
               {favorito ? (
-                <HeartFilled style={{ fontSize: 100 }} />
+                <HeartFilled style={{ fontSize: 100, color: "#BA150B" }} />
               ) : (
-                <HeartOutlined style={{ fontSize: 100 }} />
+                <HeartOutlined style={{ fontSize: 100, color: "#BA150B" }} />
               )}
             </a>
             <W2w plat_data={props.plat_data} />

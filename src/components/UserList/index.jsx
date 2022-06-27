@@ -9,7 +9,7 @@ import "./index.css";
 const UserList = (props) => {
   const { token } = useAuth();
   const Lista = props.Filmes;
-  const requestUser = props.requestUser
+  const requestUser = props.requestUser;
 
   const [listaFilmesStrapi, setListaFilmesStrapi] = useState([]);
 
@@ -32,69 +32,68 @@ const UserList = (props) => {
   };
 
   const axios = Axios;
-  
-  const GetList = useCallback(async () => {
 
+  const GetList = useCallback(async () => {
     if (Lista) {
       axios.defaults.headers.authorization = null;
       Promise.all(
         Lista.map(async (dado) => {
           // return await axios.get(
-          //   `https://w2wbackend.herokuapp.com/api/medias/${dado.strapiId}`
+          //   `https://w2wbackend.herokuapp.com/api/medias/${dado.strapiId}?populate=%2A`
           // );
           return await axios.get(
-            `http://localhost:1337/api/medias/${dado.strapiId}`
+            `http://localhost:1337/api/medias/${dado.strapiId}?populate=%2A`
           );
-        }),
-      ).then(values => {
+        })
+      ).then((values) => {
         console.log(values);
-        const filmes = values.map(response => response.data?.data)
-        console.log({filmes});
+        const filmes = values.map((response) => response.data?.data);
+        console.log({ filmes });
         setListaFilmesStrapi(filmes);
-      })
+      });
     }
-  },[Lista, axios]);
+  }, [Lista, axios]);
   useEffect(() => {
     GetList();
   }, [GetList]);
 
-  console.log({listaFilmesStrapi,teste:listaFilmesStrapi?.length});
-  if (listaFilmesStrapi?.length === 0) return <Empty description={false}/>;
+  console.log({ listaFilmesStrapi, teste: listaFilmesStrapi?.length });
+  if (listaFilmesStrapi?.length === 0) return <Empty description={false} />;
 
   return (
     <Row gutter={16}>
       {listaFilmesStrapi?.map((dado) => {
-        console.log({dado});
-        const posterLink =
-        dado?.attributes?.poster?.data[0]?.attributes?.name;
+        console.log({ dado });
+        const posterLink = dado?.attributes?.poster?.data[0]?.attributes?.name;
         const title = dado?.attributes?.title;
-      return (
-        <Col >
-                  <NavLink to={`/filme/${dado.id}`}>
-                    <div className="image">
-                      <img
-                        class="image__img"
-                        style={{ width: 150, height: 220 }}
-                        alt={`poster ${title}`}
-                        src={posterLink}
-                      />
-                      <div className="image__overlay">
-                        <div className="image__title">{title}</div>
-                      </div>
-                    </div>
-                  </NavLink>
-                  <Popconfirm
-                    title="Deseja removê-lo da lista?"
-                    okText="Sim"
-                    cancelText="Nao"
-                    onConfirm={() => confirm(dado?.id)}
-                  >
-                    <Button type="text" danger>
-                      <DeleteOutlined />
-                    </Button>
-                  </Popconfirm>
-                </Col>
-      )})}
+        return (
+          <Col>
+            <NavLink to={`/filme/${dado.id}`}>
+              <div className="image">
+                <img
+                  class="image__img"
+                  style={{ width: 150, height: 220 }}
+                  alt={`poster ${title}`}
+                  src={posterLink}
+                />
+                <div className="image__overlay">
+                  <div className="image__title">{title}</div>
+                </div>
+              </div>
+            </NavLink>
+            <Popconfirm
+              title="Deseja removê-lo da lista?"
+              okText="Sim"
+              cancelText="Nao"
+              onConfirm={() => confirm(dado?.id)}
+            >
+              <Button type="text" danger>
+                <DeleteOutlined />
+              </Button>
+            </Popconfirm>
+          </Col>
+        );
+      })}
     </Row>
   );
 };
