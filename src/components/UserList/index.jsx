@@ -56,7 +56,7 @@ const UserList = (props) => {
   }, [GetList]);
 
   console.log({listaFilmesStrapi,teste:listaFilmesStrapi?.length});
-  if (listaFilmesStrapi?.length === 0) return <Empty/>;
+  if (listaFilmesStrapi?.length === 0) return <Empty description={false}/>;
 
   return (
     <Row gutter={16}>
@@ -67,7 +67,7 @@ const UserList = (props) => {
         const title = dado?.attributes?.title;
       return (
         <Col >
-                  <NavLink to="/filme/15">
+                  <NavLink to={`/filme/${dado.id}`}>
                     <div className="image">
                       <img
                         class="image__img"
