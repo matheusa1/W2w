@@ -1,4 +1,4 @@
-import { Row, Card, Space, Image } from "antd";
+import { Row, Card, Space, Image, message } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import W2w from "../W2w";
 import Axios from "axios";
@@ -39,9 +39,11 @@ const ReviewBox = (props) => {
         { strapiVideoId: Number(id) }
       );
 
+      message.success("Adicionado aos favoritos com sucesso!");
       setFavorito(!favorito);
     } catch (error) {
       console.log(error);
+      message.success(error);
     }
   };
 
@@ -59,9 +61,11 @@ const ReviewBox = (props) => {
         }
       );
 
+      message.success("Removido com sucesso!");
       setFavorito(!favorito);
     } catch (error) {
       console.log(error);
+      message.success(error);
     }
   };
 

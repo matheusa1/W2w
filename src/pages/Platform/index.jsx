@@ -8,7 +8,7 @@ import Loading from "../../components/Loading";
 import * as S from "./styles";
 
 let pagination = 1;
-const itensPorPaginas = 15;
+const itensPorPaginas = 10;
 
 const CategoryPage = () => {
   const [Data, setData] = useState();
@@ -29,12 +29,10 @@ const CategoryPage = () => {
       `http://localhost:1337/api/platforms/${id}?populate=*`
     );
     const response = await axios.get(
-      `http://localhost:1337/api/medias?populate=%2A&filters[platforms][name][$eq]=${responseLogo?.data?.data.attributes.name}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
+      `http://localhost:1337/api/medias?populate=%2A&filters[platforms][id][$containsi]=${responseLogo?.data?.data?.id}&pagination[page]=${pagination}&pagination[pageSize]=${itensPorPaginas}&pagination[withCount]=true`
     );
     setLogo(responseLogo?.data?.data);
     setData(response?.data);
-    console.log(response?.data);
-    console.log(responseLogo?.data?.data);
   };
 
   const onChange = (page) => {
