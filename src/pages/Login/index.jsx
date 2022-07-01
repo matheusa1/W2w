@@ -1,4 +1,4 @@
-import { Col, Row, Form, Input, Button, Checkbox } from "antd";
+import { Col, Row, Form, Input, Button, Checkbox, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import * as S from "../../components/Title";
 import Axios from "axios";
@@ -11,19 +11,19 @@ const LoginPage = () => {
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const axios = Axios;
-    await axios.post("http://localhost:3333/auth/signin", {
-      email: values.email,
-      password: values.password,
-    }).then(function (response) {
+    try {
+      await axios.post("http://localhost:3333/auth/signin", {
+        email: values.email,
+        password: values.password,
+      })
+      auth.signIn({
+        email: values.email,
+        password: values.password,
+      })
       navigate('/')
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    auth.signIn({
-      email: values.email,
-      password: values.password,
-    })
+    } catch (ex) {
+      message.error('Email ou senha invalidos.')
+    }
   };
 
   return (
