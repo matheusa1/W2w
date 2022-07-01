@@ -1,24 +1,30 @@
-import { Col, Row, Form, Input, Checkbox, Button } from "antd";
+import { Col, Row, Form, Input, Checkbox, Button, message } from "antd";
 import Axios from "axios";
 import * as S from "../../components/Title";
+import { useNavigate } from "react-router";
 
 const CadastroPage = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate()
 
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const axios = Axios;
-    await axios
-      .post("http://localhost:3333/auth/signup", {
+    try {
+      await axios.post("http://localhost:3333/auth/signup", {
         email: values.email,
         password: values.password,
       })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      navigate('/login')
+      message.success('Conta criada com sucesso, você já pode fazer login')
+    } catch (ex) {
+      console.log({ex});
+      if (ex?.response?.data?.statusCode === 403) {
+        message.error('Este email já está cadastrado.')
+        return;
+      }
+      message.error('Erro ao criar sua conta.')
+    }
   };
 
   return (
