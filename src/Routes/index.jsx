@@ -10,6 +10,7 @@ import EditProfile from "../pages/EditProfile";
 import PerfilPage from "../pages/Perfil";
 import PlatformPage from "../pages/Platform";
 import PrivateRoute from "./PrivateRoute";
+import AuthRoute from "./AuthRoutes";
 
 
 const AppRoutes = () => {
@@ -44,9 +45,14 @@ const AppRoutes = () => {
         <Route path="/platform/:id" element={<PlatformPage />} />
       </Route>
 
+      <Route path='/login' element={<AuthRoute/>}>
+        <Route path="/login" element={<Login />} />
+      </Route>
 
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Cadastro />} />
+      <Route path='/register' element={<AuthRoute/>}>
+        <Route path="/register" element={<Cadastro />} />
+      </Route>
+
     </Routes>
 )};
 
